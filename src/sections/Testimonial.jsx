@@ -1,6 +1,7 @@
 import { Container, SectionHead, SectionSubHead } from "../components";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Tooltip } from "flowbite-react";
 
 // Import Swiper styles
 import "swiper/css";
@@ -54,11 +55,19 @@ const Testimonial = () => {
                       className="object-cover w-full h-full testImg"
                     />
                     <span className="absolute inset-0 flex items-center justify-center">
-                      <a
-                        href="/"
-                        className="flex items-center justify-center w-[50px] h-[50px] text-[24px] bg-[var(--text-color-white)] rounded-full text-[var(--text-color)] hover:bg-[var(--text-color)] hover:text-[var(--text-color-white)] navTrans box-border"
-                      >
-                        <i className="fa-regular fa-eye"></i>
+                      <a href="" className="tlTip">
+                        <Tooltip
+                          content="Quick View"
+                          animation="duration-1000"
+                          className="bg-[var(--text-color)] rounded-[2px] text-[12px] px-[8px] leading-[22px] py-[0] cursor-pointer"
+                        >
+                          <a
+                            href="/"
+                            className="flex items-center justify-center w-[40px] h-[40px] text-[16px] bg-[var(--text-color-white)] rounded-full text-[var(--text-color)] navTrans box-border"
+                          >
+                            <i className="fa-regular fa-eye"></i>
+                          </a>
+                        </Tooltip>
                       </a>
                     </span>
                   </div>

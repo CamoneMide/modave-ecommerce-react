@@ -221,3 +221,8 @@ body {
 .accordContent .show {
   grid-template-rows: 1fr;
 }
+
+.tlTip:hover a {
+  color: var(--text-color-white);
+  background: var(--text-color);
+}
