@@ -1,7 +1,16 @@
 import React from "react";
 import Lenis from "lenis";
 import { Nav } from "./components";
-import { Categories, Deal, Hero, Testimonial } from "./sections";
+import {
+  Categories,
+  Deal,
+  Footer,
+  Hero,
+  News,
+  ShopIcons,
+  ShopInstagram,
+  Testimonial,
+} from "./sections";
 
 function App() {
   React.useEffect(() => {
@@ -26,6 +35,10 @@ function App() {
       <Categories />
       <Deal />
       <Testimonial />
+      <News />
+      <ShopInstagram />
+      <ShopIcons />
+      <Footer />
     </>
   );
 }

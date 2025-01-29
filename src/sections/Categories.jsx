@@ -13,7 +13,7 @@ const Categories = () => {
   return (
     <>
       <section className="bg-[var(--text-color-white)]">
-        <Container className="py-[65px] relative">
+        <Container className="pt-[45px] lg:pt-[65px] relative">
           <div className="flex flex-col gap-[8px] items-center md:justify-between md:flex-row mb-[30px] md:mb-[44px] justify-self-center md:justify-self-auto">
             <div>
               <SectionHead text={"Categories you might like"} />

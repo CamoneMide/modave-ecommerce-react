@@ -7,7 +7,7 @@ import imgCount1 from "../assets/images/img-countdown1.png";
 const Deal = () => {
   return (
     <>
-      <section className="pb-[80px] lg:pb-[60px]">
+      <section className="pb-[60px] lg:pb-[80px]">
         <Container className="grid grid-cols-1 md:grid-cols-2 gap-[30px] md:gap-[15px]">
           <div className="flex flex-col justify-between">
             <div className="overflow-hidden">
@@ -61,7 +61,7 @@ const Deal = () => {
           </div>
         </Container>
       </section>
-      <section className="py-[80px] bg-[var(--area-background-color)] relative">
+      <section className="py-[60px] lg:py-[80px] bg-[var(--area-background-color)] relative">
         <Container className="flex flex-col justify-between lg:items-center lg:flex-row">
           <div className="flex flex-col justify-center gap-[24px]">
             <div>

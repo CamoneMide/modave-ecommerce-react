@@ -45,6 +45,55 @@ const Nav = () => {
             </div>
           </div>
         </Container>
+        <div className="flex lg:hidden fixed h-[70px] w-full bottom-0 bg-[var(--text-color-white)] z-[30] py-[15px]">
+          <Container className="flex flex-row items-center justify-between w-full">
+            <a
+              href=""
+              className="flex flex-col text-[20px] text-[var(--text-color)] pr-[10px] gap-[4px] items-center"
+            >
+              <i className="bx bx-grid-alt"></i>
+              <span className="text-[12px] text-[var(--text-color-inActive)] font-[500]">
+                Shop
+              </span>
+            </a>
+            <a
+              href=""
+              className="flex flex-col text-[20px] text-[var(--text-color)] px-[10px] gap-[4px] items-center"
+            >
+              <i className="bx bx-menu"></i>
+              <span className="text-[12px] text-[var(--text-color-inActive)] font-[500]">
+                Categories
+              </span>
+            </a>
+            <a
+              href=""
+              className="flex flex-col text-[20px] text-[var(--text-color)] px-[10px] gap-[4px] items-center"
+            >
+              <i className="bx bx-search"></i>
+              <span className="text-[12px] text-[var(--text-color-inActive)] font-[500]">
+                Search
+              </span>
+            </a>
+            <a
+              href=""
+              className="flex flex-col text-[20px] text-[var(--text-color)] px-[10px] gap-[4px] items-center"
+            >
+              <i className="bx bx-heart"></i>
+              <span className="text-[12px] text-[var(--text-color-inActive)] font-[500]">
+                Wishlist
+              </span>
+            </a>
+            <a
+              href=""
+              className="flex flex-col text-[20px] text-[var(--text-color)] pl-[10px] gap-[4px] items-center"
+            >
+              <i className="bx bx-shopping-bag"></i>
+              <span className="text-[12px] text-[var(--text-color-inActive)] font-[500]">
+                Cart
+              </span>
+            </a>
+          </Container>
+        </div>
       </header>
     </>
   );

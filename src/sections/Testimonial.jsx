@@ -1,4 +1,3 @@
-import React from "react";
 import { Container, SectionHead, SectionSubHead } from "../components";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -11,10 +10,10 @@ import { testySects } from "../constants";
 const Testimonial = () => {
   return (
     <>
-      <section className="bg-[var(--text-color-white)] py-[80px]">
+      <section className="bg-[var(--text-color-white)] py-[60px] lg:py-[80px]">
         <Container>
-          <div className="text-center">
-            <div>
+          <div className="text-center pb-[10px]">
+            <div className="mb-[8px]">
               <SectionHead text={"Customer Say!"} />
             </div>
             <div>
@@ -47,12 +46,23 @@ const Testimonial = () => {
           >
             {testySects.map((testySect) => (
               <SwiperSlide key={testySect.id}>
-                <div className="flex flex-row border-[1px] border-[#E9E9E9] rounded-[8px] overflow-hidden">
-                  <div className="relative flex min-w-[200px] md:min-w-[240px]">
-                    <img src={testySect.src} alt="user" />
-                    <span className="absolute flex"></span>
+                <div className="flex flex-row border-[1px] border-[#E9E9E9] rounded-[8px] testMain w-full h-full">
+                  <div className="relative flex min-w-[180px] md:min-w-[240px] overflow-hidden">
+                    <img
+                      src={testySect.src}
+                      alt="user"
+                      className="object-cover w-full h-full testImg"
+                    />
+                    <span className="absolute inset-0 flex items-center justify-center">
+                      <a
+                        href="/"
+                        className="flex items-center justify-center w-[50px] h-[50px] text-[24px] bg-[var(--text-color-white)] rounded-full text-[var(--text-color)] hover:bg-[var(--text-color)] hover:text-[var(--text-color-white)] navTrans box-border"
+                      >
+                        <i className="fa-regular fa-eye"></i>
+                      </a>
+                    </span>
                   </div>
-                  <div className="flex flex-col p-[10px] md:p-[20px] gap-[8px]">
+                  <div className="flex flex-col p-[12px] md:p-[20px] gap-[8px]">
                     <div className="flex flex-row text-[15px] text-[#FFA534]">
                       <i className="bx bxs-star"></i>
                       <i className="bx bxs-star"></i>
@@ -60,24 +70,24 @@ const Testimonial = () => {
                       <i className="bx bxs-star"></i>
                       <i className="bx bxs-star"></i>
                     </div>
-                    <div className="text-[var(--text-color-inActive)] text-[14px] leading-[20px] md:text-[16px] md:leading-[23px]">
+                    <div className="text-[var(--text-color-inActive)] text-[12px] leading-[20px] md:text-[16px] md:leading-[23px]">
                       <p>{testySect.text}</p>
                     </div>
-                    <div className="flex flex-row text-[21px] gap-[6px] items-center mb-[22px]">
+                    <div className="flex flex-row text-[21px] gap-[6px] items-center mb-[12px] md:mb-[22px]">
                       <h6 className="text-[var(--text-color)] text-[16px]">
                         {testySect.name}
                       </h6>
                       <i className="bx bx-check-circle text-[#34B233]"></i>
                     </div>
                     <div className="flex flex-row gap-[8px] pt-[20px] pb-[10px] border-t-[1px] border-t-[#E9E9E9] items-center">
-                      <div className="flex overflow-clip rounded-full min-w-[50px] min-h-[50px]">
+                      <div className="flex overflow-clip rounded-full max-w-[40px] md:max-w-[60px]">
                         <img
                           src={testySect.srcUser}
                           alt="user"
                           className="object-cover w-full h-full"
                         />
                       </div>
-                      <div className="flex flex-col text-[var(--text-color)] text-[16px]">
+                      <div className="flex flex-col text-[var(--text-color)] text-[13px] md:text-[16px]">
                         <h6 className="font-[500]">{testySect.title}</h6>
                         <p className="font-[600]">{`$${testySect.price}.00`}</p>
                       </div>
