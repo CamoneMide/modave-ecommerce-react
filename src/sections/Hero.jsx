@@ -18,7 +18,7 @@ const Hero = () => {
         spaceBetween={0}
         slidesPerView={1}
         pagination={{ clickable: true }}
-        // effect={"fade"}
+        effect={"fade"}
         autoplay={{ delay: 5000 }}
         loop
       >
@@ -26,7 +26,7 @@ const Hero = () => {
           return (
             <SwiperSlide key={heroSect.id}>
               <div className="relative dynaImg lg:h-[calc(100dvh - 50) px]">
-                <div className="h-full">
+                <div className="h-full heroFade">
                   <img
                     src={heroSect.src}
                     alt="heroImg"
