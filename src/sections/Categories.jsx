@@ -1,13 +1,15 @@
-import React from "react";
 import { AnchorBtn, Container, SectionHead } from "../components";
-import { Navigation, Pagination } from "swiper/modules";
+import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+
+// Tabs
+import { Tabs } from "flowbite-react";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { categSects } from "../constants";
+import { categSects, tabsSection } from "../constants";
 
 const Categories = () => {
   return (
@@ -71,9 +73,46 @@ const Categories = () => {
         </Container>
 
         <Container className="pt-[80px] pb-[90px]">
-          <div className="flex flex-col">
-            <div className="flex flex-row"></div>
-            <div className="grid"></div>
+          <div className="flex flex-col items-center justify-center w-full">
+            <Tabs
+              aria-label="Tabs with underline"
+              variant="underline"
+              className=" justify-center text-[200px] w-full"
+            >
+              {tabsSection.map((tab) => {
+                return (
+                  <Tabs.Item
+                    title={tab.title}
+                    key={tab.id}
+                    className="text-[200px] bg-[green] text-[red]"
+                  >
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-[30px] gap-x-[15px] lg:gap-x-[30px]">
+                      {tab.items.map((item) => (
+                        <div key={item.id} className="flex flex-col w-full">
+                          <div className="relative flex overflow-hidden">
+                            <img src={item.srcFront} alt="Front" />
+                            <div className="absolute inset-0 flex"></div>
+                          </div>
+                          <div className="flex flex-col w-full pt-[10px] lg:pt-[16px] gap-[4px]">
+                            <a
+                              href={item.href}
+                              className="text-[16px] font-[500] text-[var(--text-color)] hover:text-[var(--text-color-active)] navTrans cursor-pointer"
+                            >
+                              {item.name}
+                            </a>
+                            <p className="text-[16px] font-[600] text-[var(--text-color)] ">
+                              ${item.price}
+                            </p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </Tabs.Item>
+                );
+              })}
+            </Tabs>
+            {/* <div className="flex flex-row"></div>
+            <div className="grid"></div> */}
           </div>
         </Container>
       </section>

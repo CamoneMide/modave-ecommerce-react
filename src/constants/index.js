@@ -23,6 +23,13 @@ import galleryPic3 from "../assets/images/gallery-3.jpg";
 import galleryPic4 from "../assets/images/gallery-4.jpg";
 import galleryPic5 from "../assets/images/gallery-5.jpg";
 
+import dressFront1 from "../assets/images/dress-item1-front.jpg";
+import dressBack1 from "../assets/images/dress-item1-back.jpg";
+import dressFront2 from "../assets/images/dress-item2-front.jpg";
+import dressBack2 from "../assets/images/dress-item2-back.jpg";
+import dressFront3 from "../assets/images/dress-item3-front.jpg";
+import dressBack3 from "../assets/images/dress-item3-back.jpg";
+
 export const navLinks = [
   { href: "/", label: "Home" },
   { href: "", label: "Shop" },
@@ -247,5 +254,48 @@ export const socsIcons = [
     iconClass: "fa-brands fa-pinterest-p",
     href: "",
     color: "",
+  },
+];
+
+export const tabsSection = [
+  {
+    id: 1,
+    title: "New Arrivals",
+    items: [
+      {
+        id: 1,
+        href: "/",
+        srcFront: dressFront1,
+        srcBack: dressBack1,
+        name: "V-neck cotton T-shirt",
+        price: 59.99,
+      },
+      {
+        id: 2,
+        href: "",
+        srcFront: dressFront2,
+        srcBack: dressBack2,
+        name: "Polarized sunglasses",
+        price: 79.99,
+      },
+      {
+        id: 3,
+        href: "",
+        srcFront: dressFront3,
+        srcBack: dressBack3,
+        name: "Ramie shirt with pockets",
+        price: 89.99,
+      },
+    ],
+  },
+  {
+    id: 2,
+    title: "Best Seller",
+    items: [{ id: 1, srcFront: "", srcBack: "", name: "", price: 59.99 }],
+  },
+  {
+    id: 3,
+    title: "On Sale",
+    items: [{ id: 1, srcFront: "", srcBack: "", name: "", price: 59.99 }],
   },
 ];
