@@ -19,7 +19,7 @@ const Hero = () => {
         slidesPerView={1}
         pagination={{ clickable: true }}
         effect={"fade"}
-        autoplay={{ delay: 5000 }}
+        autoplay={{ delay: 4000 }}
         loop
       >
         {heroSects.map((heroSect) => {

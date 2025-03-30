@@ -31,6 +31,7 @@ function App() {
   return (
     <>
       <Nav />
+      <div className="mt-[64px] bg-transparent" />
       <Hero />
       <Categories />
       <Deal />

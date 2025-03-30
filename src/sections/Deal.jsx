@@ -1,5 +1,4 @@
-import React from "react";
-import { AnchorBtn, Button, Container } from "../components";
+import { AnchorBtn, Button, Container, SaleCountdownTime } from "../components";
 import banner1 from "../assets/images/banner-cls1.jpg";
 import banner2 from "../assets/images/banner-cls2.jpg";
 import imgCount1 from "../assets/images/img-countdown1.png";
@@ -80,7 +79,9 @@ const Deal = () => {
               <Button href={"/"} text={"Shop Now"} lite={false} />
             </div>
           </div>
-          <div>Time</div>
+          <div className="p-6">
+            <SaleCountdownTime days={11} hours={15} minutes={52} seconds={0} />
+          </div>
         </Container>
         <div className="absolute hidden md:flex top-0 bottom-0 lg:right-[40%] md:right-0">
           <img src={imgCount1} alt="imgCount1" className="" />

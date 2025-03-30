@@ -59,8 +59,8 @@ body {
   opacity: 1;
 } */
 .swiper-slide .heroFade {
-  transition: all 0.4s ease-in-out;
-  opacity: 0.2;
+  transition: all 0.6s ease-in-out;
+  opacity: 0;
 }
 
 .swiper-slide-active .heroFade {
@@ -69,7 +69,7 @@ body {
 
 .swiper-slide .absDiv {
   transform: translate3d(0, 500px, 0);
-  transition: all 1s ease-in-out;
+  transition: all 1.5s ease-in-out;
   opacity: 0;
 }
 
@@ -234,4 +234,61 @@ body {
 .tlTip:hover a {
   color: var(--text-color-white);
   background: var(--text-color);
+}
+
+/* Footer Icon Colors */
+.footerSocIcons li a {
+  color: #000;
+  background: transparent;
+}
+
+.footerSocIcons li .faceBook:hover {
+  color: #fff;
+  background: rgb(59, 89, 152);
+}
+.footerSocIcons li .twitX:hover {
+  color: #fff;
+  background: rgb(85, 85, 85);
+}
+.footerSocIcons li .insta:hover {
+  color: #fff;
+  background: linear-gradient(#8a3ab9, #e95950, #fccc63);
+}
+.footerSocIcons li .tikTok:hover {
+  color: #fff;
+  background: linear-gradient(#25f4ee, #000, #fe2c55);
+}
+.footerSocIcons li .amazon:hover {
+  color: #fff;
+  background: rgb(41, 39, 39);
+}
+.footerSocIcons li .pinRest:hover {
+  color: #fff;
+  background: rgb(203, 32, 39);
+}
+
+/* Categories Tabs */
+.categTabs {
+  flex-wrap: nowrap;
+  border-color: transparent;
+}
+.categTabs > button {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  padding-bottom: 4px;
+  color: var(--text-color-inActive);
+  box-shadow: none;
+  transition: all ease-in-out 0.3s;
+}
+.categTabs > button:focus {
+  box-shadow: none;
+}
+.categTabs > button:hover {
+  color: rgba(24, 24, 24, 0.8);
+  border-color: rgba(24, 24, 24, 0.6);
+}
+.categTabs > button[aria-selected="true"] {
+  font-weight: 600;
+  color: var(--text-color);
+  border-color: var(--text-color);
 }

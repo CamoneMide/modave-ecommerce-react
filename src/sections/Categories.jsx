@@ -73,19 +73,16 @@ const Categories = () => {
         </Container>
 
         <Container className="pt-[80px] pb-[90px]">
-          <div className="flex flex-col items-center justify-center w-full">
+          {/* <div className="flex flex-col items-center justify-center w-full" /> */}
+          <div>
             <Tabs
-              aria-label="Tabs with underline"
+              aria-label="Tabs in Categories"
               variant="underline"
-              className=" justify-center text-[200px] w-full"
+              className="justify-start gap-[10px] md:justify-center categTabs"
             >
               {tabsSection.map((tab) => {
                 return (
-                  <Tabs.Item
-                    title={tab.title}
-                    key={tab.id}
-                    className="text-[200px] bg-[green] text-[red]"
-                  >
+                  <Tabs.Item title={tab.title} key={tab.id}>
                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-[30px] gap-x-[15px] lg:gap-x-[30px]">
                       {tab.items.map((item) => (
                         <div key={item.id} className="flex flex-col w-full">

@@ -19,7 +19,7 @@ const Footer = () => {
 
   return (
     <>
-      <footer className="py-[40px] lg:py-[80px] border-t-[var(--text-color-reduced)] border-t-[1px]">
+      <footer className="py-[40px] lg:py-[80px] lg:pb-[60px] border-t-[var(--text-color-reduced)] border-t-[1px] mb-[50px] lg:mb-0">
         <Container>
           <div className="flex flex-col lg:grid lg:grid-cols-3">
             <div className="flex flex-col gap-[16px] mb-[30px] lg:mb-[0]">
@@ -46,12 +46,12 @@ const Footer = () => {
                   <p className="text-[16px]">315-666-6688</p>
                 </li>
               </ul>
-              <ul className="flex flex-row gap-[8px]">
+              <ul className="flex flex-row gap-[8px] footerSocIcons">
                 {socsIcons.map((socsIcon) => (
                   <li key={socsIcon.id}>
                     <a
                       href={socsIcon.href}
-                      className={`text-[20px] flex items-center justify-center w-[44px] h-[44px] border-[var(--text-color)] border-[1px] cursor-pointer rounded-full hover:text-[red] hover:bg-[${socsIcon.color}]`}
+                      className={`text-[20px] flex items-center justify-center w-[44px] h-[44px] border-[var(--text-color)] border-[1px] cursor-pointer rounded-full navTrans ${socsIcon.color}`}
                     >
                       <i className={socsIcon.iconClass}></i>
                     </a>
@@ -68,7 +68,7 @@ const Footer = () => {
                   <h6 className="text-[16px] font-[600]">Infomation</h6>
                   <div className="relative flex items-center md:hidden">
                     <span
-                      className={`navTrans accSpan1 h-[1.5px] w-[12px] right-[10px] bg-[var(--text-color)] rotate-[90deg] absolute ${
+                      className={`navTrans accSpan1 h-[1.5px] w-[12px] right-[10px] bg-[var(--text-color)]  absolute ${
                         accState1 ? "rotate-[180deg]" : "rotate-[90deg]"
                       }`}
                     ></span>
@@ -140,19 +140,19 @@ const Footer = () => {
               </div>
               <div className="w-full">
                 <div
-                  className="flex flex-row items-center justify-between w-full text-[var(--text-color)] h-[26px] mb-[12px]"
+                  className="flex flex-row items-center justify-between w-full text-[var(--text-color)] h-[26px] mb-[12px] cursor-pointer"
                   onClick={handleAccState2}
                 >
                   <h6 className="text-[16px] font-[600]">Customer Services</h6>
-                  <div className="relative flex items-center md:hidden">
+                  <div className="relative flex items-center md:hidden ">
                     <span
-                      className={`navTrans accSpan1 h-[1.5px] w-[12px] right-[10px] bg-[var(--text-color)] rotate-[90deg] absolute ${
+                      className={`navTrans accSpan1 h-[1.5px] w-[12px] right-[10px] bg-[var(--text-color)]  absolute ${
                         accState2 ? "rotate-[180deg]" : "rotate-[90deg]"
                       }`}
                     ></span>
                     <span
                       className={`navTrans accSpan2 h-[1.5px] w-[12px] right-[10px] bg-[var(--text-color)] absolute ${
-                        accState2 ? "rotate-[360deg]" : "rotate-[0deg]"
+                        accState2 ? "rotate-[360deg] " : "rotate-[0deg]"
                       }`}
                     ></span>
                   </div>
@@ -226,15 +226,15 @@ const Footer = () => {
                   <h6 className="text-[16px] font-[600]">Newletter</h6>
                   <div className="relative flex items-center md:hidden">
                     <span
-                      className={`navTrans accSpan1 h-[1.5px] w-[12px] right-[10px] bg-[var(--text-color)] rotate-[90deg] absolute ${
+                      className={`navTrans accSpan1 h-[1.5px] w-[12px] right-[10px] bg-[var(--text-color)] absolute ${
                         accState3 ? "rotate-[180deg]" : "rotate-[90deg]"
                       }`}
-                    ></span>
+                    />
                     <span
                       className={`navTrans accSpan2 h-[1.5px] w-[12px] right-[10px] bg-[var(--text-color)] absolute ${
                         accState3 ? "rotate-[360deg]" : "rotate-[0deg]"
                       }`}
-                    ></span>
+                    />
                   </div>
                 </div>
                 <div
@@ -248,20 +248,20 @@ const Footer = () => {
                         Sign up for our newsletter and get 10% off your first
                         purchase
                       </p>
-                      <div className="relative flex w-full h-[56px]">
+                      <div className="relative flex w-full h-[56px] p-[3px]">
                         <input
                           type="email"
                           name="email-form"
                           placeholder="eg.johndoe@gmail.com"
-                          className="w-full h-full rounded-full bg-[var(--text-color-white)] border-[1px] border-[var(--text-color)] py-[9px] pr-[56px] pl-[16px]"
+                          className="w-full h-full rounded-full bg-[var(--text-color-white)] border-[1px] border-[var(--text-color)] py-[9px] pr-[56px] pl-[16px] focus:shadow-none"
                         />
-                        <span className="absolute flex justify-center items-center font-[600] right-[4px] top-[4px] border-[1px] h-[48px] w-[48px] bg-[var(--text-color)] rounded-full text-[var(--text-color-white)] hover:text-[var(--text-color)] hover:bg-[var(--text-color-white)] navTrans">
+                        <span className="absolute flex justify-center items-center font-[600] right-[6px] top-[4px] border-[1px] h-[48px] w-[48px] bg-[var(--text-color)] rounded-full text-[var(--text-color-white)] hover:text-[var(--text-color)] hover:bg-[var(--text-color-white)] navTrans">
                           <i className="bx bx-arrow-back rotate-[135deg] font-[500] text-[18px] lg:text-[20px]"></i>
                         </span>
                       </div>
                       <label
                         htmlFor=""
-                        className="font-[400] text-[14px] text-[var(--text-color)]"
+                        className="font-[400] text-[14px] text-[var(--text-color)] "
                       >
                         <input type="checkbox" name="" id="" className="mr-2" />
                         By clicking subcribe, you agree to the{" "}

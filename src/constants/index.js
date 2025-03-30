@@ -223,37 +223,37 @@ export const socsIcons = [
     id: 1,
     iconClass: "bx bxl-facebook",
     href: "",
-    color: "#000",
+    color: "faceBook",
   },
   {
     id: 2,
     iconClass: "fa-brands fa-x-twitter",
     href: "",
-    color: "",
+    color: "twitX",
   },
   {
     id: 3,
     iconClass: "fa-brands fa-instagram",
     href: "",
-    color: "",
+    color: "insta",
   },
   {
     id: 4,
     iconClass: "fa-brands fa-tiktok",
     href: "",
-    color: "",
+    color: "tikTok",
   },
   {
     id: 5,
     iconClass: "fa-brands fa-amazon",
     href: "",
-    color: "",
+    color: "amazon",
   },
   {
     id: 6,
     iconClass: "fa-brands fa-pinterest-p",
     href: "",
-    color: "",
+    color: "pinRest",
   },
 ];
 
