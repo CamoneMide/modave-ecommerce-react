@@ -1,16 +1,16 @@
-import React from "react";
-
+import { Link } from "react-router-dom";
+Link;
 const Logo = () => {
   return (
     <>
-      <div className="cursor-pointer">
+      <Link to="/" className="cursor-pointer">
         <img
           src="https://themesflat.co/html/modave/images/logo/logo.svg"
           alt="logo"
           width={144}
           height={25}
         />
-      </div>
+      </Link>
     </>
   );
 };

@@ -7,25 +7,26 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
+import "swiper/css/effect-fade";
 import "swiper/css/pagination";
 
 const Hero = () => {
   return (
     <>
-      <section></section>
       <Swiper
         modules={[Pagination, EffectFade, Autoplay]}
         spaceBetween={0}
         slidesPerView={1}
         pagination={{ clickable: true }}
         effect={"fade"}
-        autoplay={{ delay: 4000 }}
-        loop
+        autoplay={{ delay: 4000, disableOnInteraction: false }}
+        loop={true}
+        fadeEffect={{ crossFade: true }}
       >
         {heroSects.map((heroSect) => {
           return (
             <SwiperSlide key={heroSect.id}>
-              <div className="relative dynaImg lg:h-[calc(100dvh - 50) px]">
+              <div className="relative dynaImg lg:h-[calc(100dvh - 50)px]">
                 <div className="h-full heroFade">
                   <img
                     src={heroSect.src}

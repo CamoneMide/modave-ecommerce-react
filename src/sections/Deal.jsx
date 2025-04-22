@@ -29,7 +29,7 @@ const Deal = () => {
               From beach to party: Perfect styles for every occasion.
             </p>
             <div>
-              <AnchorBtn href={"/"} text="Shop Now" />
+              <AnchorBtn href={"/"} color="black" text="Shop Now" />
             </div>
           </div>
           <div className="relative">
@@ -54,7 +54,7 @@ const Deal = () => {
                 Reserved for special occasions
               </p>
               <div>
-                <AnchorBtn href={"/"} text="Shop Now" />
+                <AnchorBtn href={"/"} color="white" text="Shop Now" />
               </div>
             </div>
           </div>

@@ -39,11 +39,11 @@ const Footer = () => {
               <ul className="flex flex-col gap-[8px]">
                 <li className="flex flex-row gap-[12px] text-[var(--text-color-inActive)]">
                   <i className="bx bx-envelope text-[20px]"></i>
-                  <p className="text-[16px]">themesflat@gmail.com</p>
+                  <p className="text-[16px]">ayomidemejidade@gmail.com</p>
                 </li>
                 <li className="flex flex-row gap-[12px] text-[var(--text-color-inActive)]">
                   <i className="bx bx-phone text-[20px]"></i>
-                  <p className="text-[16px]">315-666-6688</p>
+                  <p className="text-[16px]">090-3003-2512</p>
                 </li>
               </ul>
               <ul className="flex flex-row gap-[8px] footerSocIcons">

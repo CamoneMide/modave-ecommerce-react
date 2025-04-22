@@ -1,15 +1,16 @@
-import { AnchorBtn, Container, SectionHead } from "../components";
+import { AnchorBtn, Container, ProductCard, SectionHead } from "../components";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Tabs
-import { Tabs } from "flowbite-react";
+import { Tabs, Tooltip } from "flowbite-react";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { categSects, tabsSection } from "../constants";
+import { Link } from "react-router-dom";
 
 const Categories = () => {
   return (
@@ -21,7 +22,11 @@ const Categories = () => {
               <SectionHead text={"Categories you might like"} />
             </div>
             <div>
-              <AnchorBtn href={"/"} text={"View All Collection"} />
+              <AnchorBtn
+                href={"/collection"}
+                color="black"
+                text={"View All Collection"}
+              />
             </div>
           </div>
 
@@ -54,7 +59,7 @@ const Categories = () => {
                     />
                   </div>
                   <a
-                    href="/"
+                    href="/collection"
                     className="flex justify-center categLink text-[var(--text-color)] hover:text-[var(--text-color-active)]"
                   >
                     <h6 className="text-[16px] md:text-[20px] font-[500] mt-[10px]">
@@ -85,23 +90,14 @@ const Categories = () => {
                   <Tabs.Item title={tab.title} key={tab.id}>
                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-[30px] gap-x-[15px] lg:gap-x-[30px]">
                       {tab.items.map((item) => (
-                        <div key={item.id} className="flex flex-col w-full">
-                          <div className="relative flex overflow-hidden">
-                            <img src={item.srcFront} alt="Front" />
-                            <div className="absolute inset-0 flex"></div>
-                          </div>
-                          <div className="flex flex-col w-full pt-[10px] lg:pt-[16px] gap-[4px]">
-                            <a
-                              href={item.href}
-                              className="text-[16px] font-[500] text-[var(--text-color)] hover:text-[var(--text-color-active)] navTrans cursor-pointer"
-                            >
-                              {item.name}
-                            </a>
-                            <p className="text-[16px] font-[600] text-[var(--text-color)] ">
-                              ${item.price}
-                            </p>
-                          </div>
-                        </div>
+                        <ProductCard
+                          key={item.id}
+                          id={item.id}
+                          imgSrcFront={item.srcFront}
+                          imgSrcBack={item.srcBack}
+                          productName={item.name}
+                          productPrice={item.price}
+                        />
                       ))}
                     </div>
                   </Tabs.Item>

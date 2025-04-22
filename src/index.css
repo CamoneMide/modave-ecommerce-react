@@ -32,8 +32,23 @@ body {
   overflow-x: hidden;
 }
 
+.fontTektur {
+  font-family: "Tektur", sans-serif;
+}
+.fontPop {
+  font-family: "Poppins", sans-serif;
+}
+
 .navTrans {
   transition: all 0.3s ease-in-out;
+}
+
+.navTrans1 {
+  transition: all 0.5s ease-in-out;
+}
+
+.navTrans2 {
+  transition: all 1s ease-out;
 }
 
 .imgTrans {
@@ -44,9 +59,51 @@ body {
   height: calc(50dvh - 64px);
 }
 
+/* For PageMove / Tilt on Load */
+.pageContent {
+  opacity: 0;
+  transition: opacity 3s ease-in-out, transform 3s ease-in-out;
+}
+.pageContent.tPMove {
+  transform: translate3d(0, -8rem, 0);
+}
+.pageContent.tPVisisble {
+  opacity: 1;
+  /* transform: translate3d(0rem, -3.8rem, 0rem); */
+}
+
+/* Loader Test */
+
 @media (min-width: 1024px) {
   .dynaImg {
     height: calc(100dvh - 64px);
+  }
+}
+
+svg text.text-body {
+  animation: 4s infinite alternate animate-stroke;
+}
+
+@keyframes animate-stroke {
+  0% {
+    fill: transparent;
+    stroke: var(--text-color);
+    stroke-width: 3;
+    stroke-dashoffset: 25%;
+    stroke-dasharray: 0 32%;
+  }
+  50% {
+    fill: transparent;
+    stroke: var(--text-color);
+    stroke-width: 3;
+  }
+  80%,
+  100% {
+    fill: var(--text-color);
+    stroke: transparent;
+    stroke-width: 0;
+    stroke-dashoffset: -25%;
+    stroke-dasharray: 32% 0;
   }
 }
 
@@ -89,14 +146,27 @@ body {
   height: 16px !important;
 }
 
-.a-btn-line,
-.a-btn-line::after {
+.a-btn-line-white,
+.a-btn-line-white::after {
+  color: var(--text-color-white);
+  background: linear-gradient(
+    to right,
+    var(--text-color-active) 50%,
+    var(--text-color-white) 50%
+  );
+}
+.a-btn-line-black,
+.a-btn-line-black::after {
   color: var(--text-color);
   background: linear-gradient(
     to right,
     var(--text-color-active) 50%,
     var(--text-color) 50%
   );
+}
+
+.a-btn-line,
+.a-btn-line::after {
   background-repeat: no-repeat;
   background-size: 200% 100%;
   background-position: right;

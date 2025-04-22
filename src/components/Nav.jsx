@@ -2,11 +2,13 @@ import React from "react";
 import Logo from "./Logo";
 import { navLinks } from "../constants";
 import Container from "./Container";
+import { Link, useLocation } from "react-router-dom";
 
 const Nav = () => {
   const [prevScrollPos, setPrevScrollPos] = React.useState(0);
   const [visible, setVisible] = React.useState(true);
   const [navToggle, setNavToggle] = React.useState(false);
+  const location = useLocation();
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -60,13 +62,18 @@ const Nav = () => {
           </div>
           <div className="hidden lg:flex text-[16px] gap-[22px] font-[600] ">
             {navLinks.map((navLink) => (
-              <a
+              <Link
                 key={navLink.label}
-                href={navLink.href}
-                className="hover:text-[var(--text-color-active)] h-full navTrans"
+                to={navLink.href}
+                className={`hover:text-[var(--text-color-active)] h-full navTrans ${
+                  location.pathname === navLink.href
+                    ? // location.pathname.startsWith(navLink.href)
+                      "text-[var(--text-color-active)]"
+                    : "text-[var(--text-color)]"
+                }`}
               >
                 {navLink.label}
-              </a>
+              </Link>
             ))}
           </div>
           <div className="flex text-[24px] items-center space-x-[10px] lg:space-x-[16px]">
@@ -89,24 +96,24 @@ const Nav = () => {
         </Container>
         <div className="flex lg:hidden fixed h-[70px] w-full bottom-0 bg-[var(--text-color-white)] z-[30] py-[15px]">
           <Container className="flex flex-row items-center justify-between w-full">
-            <a
-              href=""
+            <Link
+              to="/product"
               className="flex flex-col text-[20px] text-[var(--text-color)] pr-[10px] gap-[4px] items-center"
             >
               <i className="bx bx-grid-alt"></i>
               <span className="text-[12px] text-[var(--text-color-inActive)] font-[500]">
                 Shop
               </span>
-            </a>
-            <a
-              href=""
+            </Link>
+            <Link
+              to="/collection"
               className="flex flex-col text-[20px] text-[var(--text-color)] px-[10px] gap-[4px] items-center"
             >
               <i className="bx bx-menu"></i>
               <span className="text-[12px] text-[var(--text-color-inActive)] font-[500]">
                 Categories
               </span>
-            </a>
+            </Link>
             <a
               href=""
               className="flex flex-col text-[20px] text-[var(--text-color)] px-[10px] gap-[4px] items-center"
@@ -169,47 +176,26 @@ const Nav = () => {
                 </div>
                 <div className="flex flex-col items-center justify-between w-full h-full pb-[30px]">
                   <div className="flex flex-col items-center w-full">
-                    <div className="flex items-center w-full h-[48px] border-b-[1px] border-b-[rgb(233 233 233)]">
-                      <a
-                        href=""
-                        className="text-[16px] font-[500] leading-[24px] text-[var(--text-color)]"
+                    {navLinks.map((navLink) => (
+                      <div
+                        key={navLink.label}
+                        className="flex items-center w-full h-[48px] border-b-[1px] border-b-[rgb(233 233 233)] last:border-b-0"
                       >
-                        Home
-                      </a>
-                    </div>
-                    <div className="flex items-center w-full h-[48px] border-b-[1px] border-b-[rgb(233 233 233)]">
-                      <a
-                        href=""
-                        className="text-[16px] font-[500] leading-[24px] text-[var(--text-color)]"
-                      >
-                        Shop
-                      </a>
-                    </div>
-                    <div className="flex items-center w-full h-[48px] border-b-[1px] border-b-[rgb(233 233 233)]">
-                      <a
-                        href=""
-                        className="text-[16px] font-[500] leading-[24px] text-[var(--text-color)]"
-                      >
-                        Products
-                      </a>
-                    </div>
-                    <div className="flex items-center w-full h-[48px] border-b-[1px] border-b-[rgb(233 233 233)]">
-                      <a
-                        href=""
-                        className="text-[16px] font-[500] leading-[24px] text-[var(--text-color)]"
-                      >
-                        Blog
-                      </a>
-                    </div>
-                    <div className="flex items-center w-full h-[48px]">
-                      <a
-                        href=""
-                        className="text-[16px] font-[500] leading-[24px] text-[var(--text-color)]"
-                      >
-                        About Us
-                      </a>
-                    </div>
+                        <Link
+                          to={navLink.href}
+                          className={`hover:text-[var(--text-color-active)] navTrans text-[16px] font-[500] leading-[24px] ${
+                            location.pathname === navLink.href
+                              ? // location.pathname.startsWith(navLink.href)
+                                "text-[var(--text-color-active)]"
+                              : "text-[var(--text-color)]"
+                          }`}
+                        >
+                          {navLink.label}
+                        </Link>
+                      </div>
+                    ))}
                   </div>
+
                   <div className="flex flex-col w-full">
                     <div className="flex flex-row gap-[10px] mt-[10px] mb-[20px]">
                       <a
@@ -251,11 +237,13 @@ const Nav = () => {
                       <ul className="flex flex-col gap-[8px]">
                         <li className="flex flex-row gap-[12px] text-[var(--text-color-inActive)]">
                           <i className="bx bx-envelope text-[20px]"></i>
-                          <p className="text-[16px]">themesflat@gmail.com</p>
+                          <p className="text-[16px]">
+                            ayomidemejidade@gmail.com
+                          </p>
                         </li>
                         <li className="flex flex-row gap-[12px] text-[var(--text-color-inActive)]">
                           <i className="bx bx-phone text-[20px]"></i>
-                          <p className="text-[16px]">315-666-6688</p>
+                          <p className="text-[16px]">090-3003-2512</p>
                         </li>
                       </ul>
                     </div>
