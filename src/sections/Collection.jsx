@@ -1,30 +1,19 @@
-import { Link } from "react-router-dom";
 import { allProducts } from "../constants";
-import { ProductCard } from "../components";
+import { PageNavBtns, ProductCard, TopHeroReUse } from "../components";
 
 const Collection = () => {
   return (
     <section className="">
-      <div className="h-[212px] lg:h-[240px] w-full bg-[url(/src/assets/images/collection-imgBg1.jpg)] bg-center bg-cover bg-no-repeat flex flex-col justify-center items-center">
-        <h3 className="text-[28px] md:text-[30px] lg:text-[40px] font-[500] text-[var(--text-color)]">
-          Women
-        </h3>
-        <div className="flex flex-row items-center gap-1 text-[14px] font-[400]">
-          <Link
-            to="/"
-            className="text-[var(--text-color)] hover:text-[var(--text-color-active)] cursor-pointer navTrans"
-          >
-            Homepage
-          </Link>
-          <div className="text-[14px] mt-1 text-[var(--text-color-reduced)]">
-            <i className="bx bx-chevron-right"></i>
-          </div>
-          <p className="text-[var(--text-color-reduced)]">Women</p>
-        </div>
+      <div>
+        <TopHeroReUse text={"Women"} />
       </div>
-      <div className="py-[80px] w-full bg-[var(--text-color-white)] px-[15px]">
-        <div className="mx-auto w-full max-w-[1320px]">
-          <div className="h-[36px] flex flex-row items-center justify-between mb-[30px]">
+
+      <div className="py-[80px] w-full bg-[var(--text-color-white)] px-[20px] md:px-[30px] lg:px-0">
+        <div className="mx-auto w-full max-w-[1290px]">
+          <div
+            className="h-[36px] flex flex-row items-center justify-between mb-[30px]"
+            data-scroll-section
+          >
             <div className="flex flex-row items-center gap-[16px]">
               <div className="h-[36px] flex flex-row items-center border-[2px] border-[#E9E9E9] hover:border-[var(--text-color)] cursor-pointer gap-[4px] py-[3px] px-[10px] rounded-[4px] bg-[var(--text-color-white)] text-[var(--text-color)] transition-all duration-200">
                 <span className="text-[16px] font-[400]">
@@ -127,48 +116,25 @@ const Collection = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-[30px] gap-x-[15px] lg:gap-x-[24px]">
-            {allProducts.slice(0, 16).map((item) => {
-              return (
-                <ProductCard
-                  key={item.id}
-                  id={item.id}
-                  imgSrcFront={item.srcFront}
-                  imgSrcBack={item.srcBack}
-                  productName={item.name}
-                  productPrice={item.price}
-                />
-              );
-            })}
-          </div>
-
-          <div className="mt-[40px] flex flex-row justify-center items-center">
-            <div className="flex flex-row items-center gap-[8px]">
-              <a
-                href=""
-                className="text-[16px] text-[var(--text-color)] border-[1px] border-[#E9E9E9] rounded-[5px] font-[600] size-[40px] flex items-center justify-center bg-[var(--text-color-white)]"
-              >
-                1
-              </a>
-              <a
-                href=""
-                className="text-[16px] text-[var(--text-color-white)] border-[1px] border-[var(--text-color)] rounded-[5px] font-[600] size-[40px] flex items-center justify-center bg-[var(--text-color)]"
-              >
-                2
-              </a>
-              <a
-                href=""
-                className="text-[16px] text-[var(--text-color)] border-[1px] border-[#E9E9E9] rounded-[5px] font-[600] size-[40px] flex items-center justify-center bg-[var(--text-color-white)]"
-              >
-                3
-              </a>
-              <a
-                href=""
-                className="text-[16px] text-[var(--text-color)] border-[1px] border-[#E9E9E9] rounded-[5px] font-[600] size-[40px] flex items-center justify-center bg-[var(--text-color-white)]"
-              >
-                <i className="bx bx-chevron-right"></i>
-              </a>
+          <section data-scroll-section>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-[30px] gap-x-[15px] lg:gap-x-[24px]">
+              {allProducts.slice(0, 16).map((item) => {
+                return (
+                  <ProductCard
+                    key={item.id}
+                    id={item.id}
+                    imgSrcFront={item.srcFront}
+                    imgSrcBack={item.srcBack}
+                    productName={item.name}
+                    productPrice={item.price}
+                  />
+                );
+              })}
             </div>
+          </section>
+
+          <div className="mt-[40px]">
+            <PageNavBtns />
           </div>
         </div>
       </div>

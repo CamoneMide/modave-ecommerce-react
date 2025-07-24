@@ -1,5 +1,10 @@
+import AboutUs from "./AboutUs";
+import BlogDetails from "./BlogDetails";
+import Blogs from "./Blogs";
 import Categories from "./Categories";
+import CategoriesPage from "./CategoriesPage";
 import Collection from "./Collection";
+import ContactUs from "./ContactUs";
 import Deal from "./Deal";
 import Footer from "./Footer";
 import Hero from "./Hero";
@@ -11,8 +16,13 @@ import ShopInstagram from "./ShopInstagram";
 import Testimonial from "./Testimonial";
 
 export {
+  AboutUs,
+  BlogDetails,
+  Blogs,
   Categories,
+  CategoriesPage,
   Collection,
+  ContactUs,
   Deal,
   Footer,
   Hero,

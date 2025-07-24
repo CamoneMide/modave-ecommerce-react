@@ -1,12 +1,17 @@
 import { Container, SectionHead, SectionSubHead } from "../components";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Tooltip } from "flowbite-react";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import { shopGramSects } from "../constants";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@radix-ui/react-tooltip";
 
 const ShopInstagram = () => {
   return (
@@ -53,20 +58,23 @@ const ShopInstagram = () => {
                       className="object-cover w-full h-full shopImg"
                     />
                     <span className="absolute inset-0 flex items-center justify-center">
-                      <a href="" className="tlTip">
-                        <Tooltip
-                          content="View Product"
-                          animation="duration-1000"
-                          className="bg-[var(--text-color)] rounded-[2px] text-[12px] px-[8px] leading-[22px] py-[0] cursor-pointer"
-                        >
-                          <a
-                            href={shopGramSect.href}
-                            className="flex items-center justify-center w-[40px] h-[40px] text-[22px] bg-[var(--text-color-white)] rounded-full text-[var(--text-color)] navTrans box-border font-[400]"
-                          >
-                            <i className="fa-regular fa-eye"></i>
-                          </a>
-                        </Tooltip>
-                      </a>
+                      <div href="" className="tlTip">
+                        <TooltipProvider>
+                          <Tooltip delayDuration={0}>
+                            <TooltipTrigger>
+                              <a
+                                href={shopGramSect.href}
+                                className="flex items-center justify-center w-[40px] h-[40px] text-[22px] bg-[var(--text-color-white)] rounded-full text-[var(--text-color)] navTrans box-border font-[400] hover:bg-[var(--text-color)] hover:text-[var(--text-color-white)] cursor-pointer"
+                              >
+                                <i className="fa-regular fa-eye"></i>
+                              </a>
+                            </TooltipTrigger>
+                            <TooltipContent className="bg-[var(--text-color)] text-[#FFF] rounded-[2px] text-[12px] px-[8px] leading-[22px] py-[0] cursor-pointer">
+                              View Product
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                      </div>
                     </span>
                   </div>
                 </div>

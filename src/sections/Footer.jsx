@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Logo } from "../components";
 import { socsIcons } from "../constants";
+import { BsGithub } from "react-icons/bs";
 
 const Footer = () => {
   const [accState1, setAccState1] = React.useState(false);
@@ -19,7 +20,7 @@ const Footer = () => {
 
   return (
     <>
-      <footer className="py-[40px] lg:py-[80px] lg:pb-[60px] border-t-[var(--text-color-reduced)] border-t-[1px] mb-[50px] lg:mb-0">
+      <footer className="py-[40px] lg:pt-[80px] lg:pb-[10px] border-t-[var(--text-color-reduced)] border-t-[1px] mb-[40px] lg:mb-0">
         <Container>
           <div className="flex flex-col lg:grid lg:grid-cols-3">
             <div className="flex flex-col gap-[16px] mb-[30px] lg:mb-[0]">
@@ -217,7 +218,7 @@ const Footer = () => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col mt-[18px] lg:mt-[0]">
+            <div className="flex flex-col my-[18px] lg:my-[0]">
               <div className="w-full">
                 <div
                   className="flex flex-row items-center justify-between w-full text-[var(--text-color)] h-[26px] mb-[12px]"
@@ -253,15 +254,15 @@ const Footer = () => {
                           type="email"
                           name="email-form"
                           placeholder="eg.johndoe@gmail.com"
-                          className="w-full h-full rounded-full bg-[var(--text-color-white)] border-[1px] border-[var(--text-color)] py-[9px] pr-[56px] pl-[16px] focus:shadow-none"
+                          className="w-full h-full rounded-full bg-[var(--text-color-white)] border-[1.4px] border-[var(--text-color)] py-[9px] pr-[56px] pl-[16px] focus:shadow-none"
                         />
-                        <span className="absolute flex justify-center items-center font-[600] right-[6px] top-[4px] border-[1px] h-[48px] w-[48px] bg-[var(--text-color)] rounded-full text-[var(--text-color-white)] hover:text-[var(--text-color)] hover:bg-[var(--text-color-white)] navTrans">
+                        <span className="absolute flex justify-center items-center font-[600] right-[6px] top-[4px] border-[1.4px] border-[var(--text-color)] h-[48px] w-[48px] bg-[var(--text-color)] rounded-full text-[var(--text-color-white)] hover:text-[var(--text-color)] hover:bg-[var(--text-color-white)] navTrans">
                           <i className="bx bx-arrow-back rotate-[135deg] font-[500] text-[18px] lg:text-[20px]"></i>
                         </span>
                       </div>
                       <label
                         htmlFor=""
-                        className="font-[400] text-[14px] text-[var(--text-color)] "
+                        className="font-[400] text-[14px] text-[var(--text-color)]"
                       >
                         <input type="checkbox" name="" id="" className="mr-2" />
                         By clicking subcribe, you agree to the{" "}
@@ -284,6 +285,34 @@ const Footer = () => {
                 </div>
               </div>
             </div>
+          </div>
+        </Container>
+        <div className="w-[100%] hidden lg:flex h-[1px] bg-[var(--text-color-reduced)] mt-[40px]" />
+        <Container>
+          <div className="hidden lg:flex flex-col md:flex-row items-center justify-center md:justify-between text-[14px] font-[500] text-[var(--text-color)] pt-[16px]">
+            <p>Copyright &copy; {new Date().getFullYear()}, Modave~React.</p>
+            <p className="flex flex-row items-center flex-nowrap">
+              <strong>Developed by</strong>
+              <a href="#" target="_blank" className="ml-1">
+                <i>Camone_Mide</i>
+              </a>
+              <a
+                rel="noreferrer"
+                href="https://www.linkedin.com/in/mide-web-developer"
+                target="_blank"
+                className="text-[18px] text-[#0077B5] px-[4px]"
+              >
+                <i className="bx bxl-linkedin"></i>
+              </a>
+              <a
+                rel="noreferrer"
+                href="https://github.com/CamoneMide"
+                target="_blank"
+                className=" text-[#0077B5]"
+              >
+                <BsGithub size={14} />
+              </a>
+            </p>
           </div>
         </Container>
       </footer>

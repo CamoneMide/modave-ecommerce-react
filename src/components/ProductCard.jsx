@@ -1,4 +1,9 @@
-import { Tooltip } from "flowbite-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@radix-ui/react-tooltip";
 import { Link } from "react-router-dom";
 
 const ProductCard = ({
@@ -11,8 +16,8 @@ const ProductCard = ({
   return (
     <>
       <div className="flex flex-col w-full group">
-        <Link
-          to={`/product/${id}`}
+        <div
+          // to={`/product/${id}`}
           className="relative flex overflow-hidden rounded-[8px]"
         >
           <img
@@ -26,45 +31,60 @@ const ProductCard = ({
             className="opacity-0 scale-[1] navTrans1 group-hover:opacity-100 group-hover:scale-[1.1] absolute size-full"
           />
           <div className="absolute z-[5] right-3 top-3 flex flex-col gap-[6px] group-hover:translate-x-0 group-hover:opacity-100 translate-x-0 lg:translate-x-[200%] opacity-100 lg:opacity-50 navTrans">
-            <Tooltip
-              content="Wishlist"
-              placement="left"
-              animation="duration-1000"
-              className="bg-[var(--text-color)] rounded-[2px] text-[12px] px-[8px] leading-[22px] py-[0] cursor-pointer"
-            >
-              <a
-                href=""
-                className="flex items-center justify-center w-[40px] h-[40px] text-[22px] bg-[var(--text-color-white)] rounded-full text-[var(--text-color)] navTrans box-border font-[400] hover:bg-[var(--text-color)] hover:text-[var(--text-color-white)] cursor-pointer"
-              >
-                <i className="bx bx-heart"></i>
-              </a>
-            </Tooltip>
-            <Tooltip
-              content="Compare"
-              placement="left"
-              animation="duration-1000"
-              className="bg-[var(--text-color)] rounded-[2px] text-[12px] px-[8px] leading-[22px] py-[0] cursor-pointer"
-            >
-              <a
-                href=""
-                className="flex items-center justify-center w-[40px] h-[40px] text-[22px] bg-[var(--text-color-white)] rounded-full text-[var(--text-color)] navTrans box-border font-[400] hover:bg-[var(--text-color)] hover:text-[var(--text-color-white)] cursor-pointer"
-              >
-                <i className="bx bx-git-compare"></i>
-              </a>
-            </Tooltip>
-            <Tooltip
-              content="Quick View"
-              placement="left"
-              animation="duration-1000"
-              className="bg-[var(--text-color)] rounded-[2px] text-[12px] px-[8px] leading-[22px] py-[0] cursor-pointer"
-            >
-              <a
-                href=""
-                className="flex items-center justify-center w-[40px] h-[40px] text-[22px] bg-[var(--text-color-white)] rounded-full text-[var(--text-color)] navTrans box-border font-[400] hover:bg-[var(--text-color)] hover:text-[var(--text-color-white)] cursor-pointer"
-              >
-                <i className="fa-regular fa-eye"></i>
-              </a>
-            </Tooltip>
+            <TooltipProvider>
+              <Tooltip delayDuration={0}>
+                <TooltipTrigger>
+                  <a
+                    href="#"
+                    className="flex items-center justify-center w-[40px] h-[40px] text-[22px] bg-[var(--text-color-white)] rounded-full text-[var(--text-color)] navTrans box-border font-[400] hover:bg-[var(--text-color)] hover:text-[var(--text-color-white)] cursor-pointer"
+                  >
+                    <i className="bx bx-heart"></i>
+                  </a>
+                </TooltipTrigger>
+                <TooltipContent
+                  side="left"
+                  className="bg-[var(--text-color)] rounded-[2px] text-[12px] text-[white] px-[8px] leading-[22px] py-[0] cursor-pointer"
+                >
+                  Wishlist
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+            <TooltipProvider>
+              <Tooltip delayDuration={0}>
+                <TooltipTrigger>
+                  <a
+                    href="#"
+                    className="flex items-center justify-center w-[40px] h-[40px] text-[22px] bg-[var(--text-color-white)] rounded-full text-[var(--text-color)] navTrans box-border font-[400] hover:bg-[var(--text-color)] hover:text-[var(--text-color-white)] cursor-pointer"
+                  >
+                    <i className="bx bx-git-compare"></i>
+                  </a>
+                </TooltipTrigger>
+                <TooltipContent
+                  side="left"
+                  className="bg-[var(--text-color)] text-[white] rounded-[2px] text-[12px] px-[8px] leading-[22px] py-[0] cursor-pointer"
+                >
+                  Compare
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+            <TooltipProvider>
+              <Tooltip delayDuration={0}>
+                <TooltipTrigger>
+                  <a
+                    href="#"
+                    className="flex items-center justify-center w-[40px] h-[40px] text-[22px] bg-[var(--text-color-white)] rounded-full text-[var(--text-color)] navTrans box-border font-[400] hover:bg-[var(--text-color)] hover:text-[var(--text-color-white)] cursor-pointer"
+                  >
+                    <i className="fa-regular fa-eye"></i>
+                  </a>
+                </TooltipTrigger>
+                <TooltipContent
+                  side="left"
+                  className="bg-[var(--text-color)] text-[white] rounded-[2px] text-[12px] px-[8px] leading-[22px] py-[0] cursor-pointer"
+                >
+                  Quick View
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </div>
           <a
             href=""
@@ -72,7 +92,7 @@ const ProductCard = ({
           >
             <span>Quick Add</span>
           </a>
-        </Link>
+        </div>
         <div className="flex flex-col w-full pt-[10px] lg:pt-[16px] gap-[4px]">
           <Link
             to={`/product/${id}`}

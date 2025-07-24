@@ -3,7 +3,7 @@ Link;
 const Logo = () => {
   return (
     <>
-      <Link to="/" className="cursor-pointer">
+      <Link to="/" className="p-0 cursor-pointer">
         <img
           src="https://themesflat.co/html/modave/images/logo/logo.svg"
           alt="logo"

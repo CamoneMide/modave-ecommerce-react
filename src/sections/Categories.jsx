@@ -3,14 +3,14 @@ import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Tabs
-import { Tabs, Tooltip } from "flowbite-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+// import { Tabs } from "flowbite-react";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { categSects, tabsSection } from "../constants";
-import { Link } from "react-router-dom";
 
 const Categories = () => {
   return (
@@ -78,34 +78,38 @@ const Categories = () => {
         </Container>
 
         <Container className="pt-[80px] pb-[90px]">
-          {/* <div className="flex flex-col items-center justify-center w-full" /> */}
-          <div>
-            <Tabs
-              aria-label="Tabs in Categories"
-              variant="underline"
-              className="justify-start gap-[10px] md:justify-center categTabs"
-            >
-              {tabsSection.map((tab) => {
-                return (
-                  <Tabs.Item title={tab.title} key={tab.id}>
-                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-[30px] gap-x-[15px] lg:gap-x-[30px]">
-                      {tab.items.map((item) => (
-                        <ProductCard
-                          key={item.id}
-                          id={item.id}
-                          imgSrcFront={item.srcFront}
-                          imgSrcBack={item.srcBack}
-                          productName={item.name}
-                          productPrice={item.price}
-                        />
-                      ))}
-                    </div>
-                  </Tabs.Item>
-                );
-              })}
+          <div className="w-full overflow-hidden">
+            <Tabs defaultValue={tabsSection[0].id} className="w-full">
+              {/* Tab Headers - Now with exact Flowbite styling */}
+              <TabsList className="categTabs flex justify-start md:justify-center bg-transparent p-0 gap-[20px] lg:gap-[40px] mb-[20px] lg:mb-[40px]">
+                {tabsSection.map((tab) => (
+                  <TabsTrigger
+                    key={tab.id}
+                    value={tab.id}
+                    className="relative font-medium text-[18px] md:text-[24px] lg:text-[30px] m-0 p-0 ring-0 text-[var(--text-color-inActive)] hover:text-[rgba(24,24,24,0.8)] data-[state=active]:font-semibold data-[state=active]:text-[var(--text-color)] border-b-2 border-transparent hover:border-[rgba(24,24,24,0.6)] data-[state=active]:border-[var(--text-color)] rounded-none shadow-none transition-all duration-300 ease-in-out focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=active]:shadow-none"
+                  >
+                    {tab.title}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+
+              {tabsSection.map((tab) => (
+                <TabsContent key={tab.id} value={tab.id} className="abtPgCont">
+                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-[30px] gap-x-[15px] lg:gap-x-[30px]">
+                    {tab.items.map((item) => (
+                      <ProductCard
+                        key={item.id}
+                        id={item.id}
+                        imgSrcFront={item.srcFront}
+                        imgSrcBack={item.srcBack}
+                        productName={item.name}
+                        productPrice={item.price}
+                      />
+                    ))}
+                  </div>
+                </TabsContent>
+              ))}
             </Tabs>
-            {/* <div className="flex flex-row"></div>
-            <div className="grid"></div> */}
           </div>
         </Container>
       </section>

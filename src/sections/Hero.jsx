@@ -1,4 +1,3 @@
-import React from "react";
 import { heroSects } from "../constants";
 import { Button, Container } from "../components";
 

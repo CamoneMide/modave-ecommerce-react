@@ -59,23 +59,25 @@
 
 // export default Loader;
 
-const Loader = ({ animate }) => {
+const Loader = ({ animate, logoPosition }) => {
   return (
     <div
-      className={`fixed inset-0 w-full bg-[var(--text-color-white)] transition-all duration-[1700ms] delay-[1300ms] ease-in-out ${
-        animate ? "opacity-0 -z-10" : "opacity-[1] z-[60]"
+      className={`fixed inset-0 w-full bg-[var(--text-color-white)] transition-all myLDelay ease-in-out ${
+        animate ? "opacity-0 -z-[10]" : "opacity-[1] z-[60]"
       }`}
     >
       <div
-        className={`fixed top-0 left-0 h-[64px] w-full px-[20px] text-[#181818] bg-none transition-all duration-1000 delay-500 ease-in-out ${
+        className={`fixed top-0 left-[${logoPosition}px] h-[64px] w-full px-[20px] text-[#181818] bg-none transition-all duration-1000 delay-500 ease-in-out ${
           animate
-            ? "translate-y-0 translate-x-[11vw] lg:-translate-x-[80px]"
-            : "translate-y-[40vh]  translate-x-[12vw] lg:translate-x-[32vw]"
+            ? "translate-y-0 translate-x-0"
+            : "translate-y-[40vh] translate-x-[12vw] lg:translate-x-[32vw]"
         }`}
       >
         <svg
           viewBox="0 0 600 140"
-          className="w-[16rem] lg:w-[20rem] font-[600] fontPop"
+          className={`w-[16rem] lg:w-[20rem] font-[600] fontPop transition-all duration-1000 delay-500 ease-in-out ${
+            animate ? "translate-x-[42px]" : "translate-x-0"
+          }`}
         >
           <text
             x="50%"

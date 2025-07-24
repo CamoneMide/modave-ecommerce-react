@@ -3,12 +3,14 @@ import Logo from "./Logo";
 import { navLinks } from "../constants";
 import Container from "./Container";
 import { Link, useLocation } from "react-router-dom";
+import { BsGithub } from "react-icons/bs";
 
-const Nav = () => {
+const Nav = ({ setLogoPosition, setIsOpen }) => {
   const [prevScrollPos, setPrevScrollPos] = React.useState(0);
   const [visible, setVisible] = React.useState(true);
   const [navToggle, setNavToggle] = React.useState(false);
   const location = useLocation();
+  const logoDivRef = React.useRef(null);
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -41,59 +43,83 @@ const Nav = () => {
     };
   }, [navToggle]);
 
+  React.useEffect(() => {
+    const getLogoPosition = () => {
+      if (logoDivRef.current && setLogoPosition) {
+        const rect = logoDivRef.current.getBoundingClientRect();
+        setLogoPosition(rect.left);
+      }
+    };
+
+    getLogoPosition();
+    window.addEventListener("resize", getLogoPosition);
+
+    return () => {
+      window.removeEventListener("resize", getLogoPosition);
+    };
+  }, [setLogoPosition]);
+
   return (
     <>
       <header>
-        <Container
-          className={`text-[var(--text-color)] min-h-[64px] bg-[var(--text-color-white)] flex items-center justify-between w-full fixed navTrans z-50 ${
+        <div
+          className={`text-[var(--text-color)] bg-[var(--text-color-white)] flex items-center justify-center w-full fixed navTrans z-50 ${
             visible ? "top-0" : "-top-[68px]"
           }`}
         >
-          <div
-            className="flex lg:hidden w-[30px] h-[25px] flex-col space-y-1 cursor-pointer"
-            onClick={() => setNavToggle(true)}
+          <Container
+            className={`min-h-[64px] bg-[var(--text-color-white)] flex items-center justify-between w-full`}
           >
-            <span className="w-[100%] h-[3px] bg-[var(--text-color)]"></span>
-            <span className="w-[50%] h-[3px] bg-[var(--text-color)]"></span>
-            <span className="w-[70%] h-[3px] bg-[var(--text-color)]"></span>
-          </div>
-          <div className="flex">
-            <Logo />
-          </div>
-          <div className="hidden lg:flex text-[16px] gap-[22px] font-[600] ">
-            {navLinks.map((navLink) => (
-              <Link
-                key={navLink.label}
-                to={navLink.href}
-                className={`hover:text-[var(--text-color-active)] h-full navTrans ${
-                  location.pathname === navLink.href
-                    ? // location.pathname.startsWith(navLink.href)
-                      "text-[var(--text-color-active)]"
-                    : "text-[var(--text-color)]"
-                }`}
+            <div
+              className="flex lg:hidden w-[30px] h-[25px] flex-col space-y-1 cursor-pointer group/navLine"
+              onClick={() => setNavToggle(true)}
+            >
+              <span className="w-[100%] h-[3px] bg-[var(--text-color)] group-hover/navLine:w-[100%] transition-all duration-300"></span>
+              <span className="w-[50%] h-[3px] bg-[var(--text-color)] group-hover/navLine:w-[100%] transition-all duration-300"></span>
+              <span className="w-[70%] h-[3px] bg-[var(--text-color)] group-hover/navLine:w-[100%] transition-all duration-300"></span>
+            </div>
+            <div className="flex logoDiv" id="logoDiv" ref={logoDivRef}>
+              <Logo />
+            </div>
+            <div className="hidden lg:flex text-[16px] gap-[22px] font-[600] ">
+              {navLinks.map((navLink) => (
+                <Link
+                  key={navLink.label}
+                  to={navLink.href}
+                  className={`hover:text-[var(--text-color-active)] h-full navTrans ${
+                    location.pathname === navLink.href
+                      ? // location.pathname.startsWith(navLink.href)
+                        "text-[var(--text-color-active)]"
+                      : "text-[var(--text-color)]"
+                  }`}
+                >
+                  {navLink.label}
+                </Link>
+              ))}
+            </div>
+            <div className="flex text-[24px] items-center space-x-[10px] lg:space-x-[16px]">
+              <div className="flex cursor-pointer">
+                <i className="bx bx-search"></i>
+              </div>
+              <div className="hidden cursor-pointer md:flex">
+                <i className="bx bx-user"></i>
+              </div>
+              <div className="hidden cursor-pointer md:flex">
+                <i className="bx bx-heart"></i>
+              </div>
+              <div
+                className="relative flex cursor-pointer"
+                onClick={() => setIsOpen(true)}
               >
-                {navLink.label}
-              </Link>
-            ))}
-          </div>
-          <div className="flex text-[24px] items-center space-x-[10px] lg:space-x-[16px]">
-            <div className="flex cursor-pointer">
-              <i className="bx bx-search"></i>
+                <i className="bx bx-shopping-bag"></i>
+                <span className="text-[10px] text-[var(--text-color-white)] bg-[var(--text-color-active)] absolute right-0 px-[3px] rounded-full">
+                  0
+                </span>
+              </div>
             </div>
-            <div className="hidden cursor-pointer md:flex">
-              <i className="bx bx-user"></i>
-            </div>
-            <div className="hidden cursor-pointer md:flex">
-              <i className="bx bx-heart"></i>
-            </div>
-            <div className="relative flex cursor-pointer">
-              <i className="bx bx-shopping-bag"></i>
-              <span className="text-[10px] text-[var(--text-color-white)] bg-[var(--text-color-active)] absolute right-0 px-[3px] rounded-full">
-                0
-              </span>
-            </div>
-          </div>
-        </Container>
+          </Container>
+        </div>
+
         <div className="flex lg:hidden fixed h-[70px] w-full bottom-0 bg-[var(--text-color-white)] z-[30] py-[15px]">
           <Container className="flex flex-row items-center justify-between w-full">
             <Link
@@ -182,6 +208,7 @@ const Nav = () => {
                         className="flex items-center w-full h-[48px] border-b-[1px] border-b-[rgb(233 233 233)] last:border-b-0"
                       >
                         <Link
+                          onClick={() => setNavToggle(false)}
                           to={navLink.href}
                           className={`hover:text-[var(--text-color-active)] navTrans text-[16px] font-[500] leading-[24px] ${
                             location.pathname === navLink.href
@@ -252,7 +279,9 @@ const Nav = () => {
 
                 <div className="w-[110%] flex h-[1px] bg-[var(--text-color-inActive)] -ml-[16px]" />
                 <div className="flex flex-col md:flex-row items-center justify-center md:justify-between text-[14px] font-[500] text-[var(--text-color)] pt-[16px]">
-                  <p>Copyright &copy; 2025, Modave~React.</p>
+                  <p>
+                    Copyright &copy; {new Date().getFullYear()}, Modave~React.
+                  </p>
                   <p className="flex flex-row items-center flex-nowrap">
                     <strong>Developed by</strong>
                     <a href="#" target="_blank" className="ml-1">
@@ -265,6 +294,14 @@ const Nav = () => {
                       className="text-[18px] text-[#0077B5] px-[4px]"
                     >
                       <i className="bx bxl-linkedin"></i>
+                    </a>
+                    <a
+                      rel="noreferrer"
+                      href="https://github.com/CamoneMide"
+                      target="_blank"
+                      className=" text-[#0077B5]"
+                    >
+                      <BsGithub size={14} />
                     </a>
                   </p>
                 </div>

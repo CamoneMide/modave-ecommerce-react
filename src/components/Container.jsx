@@ -5,7 +5,7 @@ const Container = ({ children, className }) => {
     <>
       <div
         className={twMerge(
-          "mx-auto max-w-[1290px] px-[20px] md:px-[30px] lg:px-[20px]",
+          "mx-auto max-w-[1320px] px-[20px] md:px-[30px] lg:px-[20px]",
           className
         )}
       >

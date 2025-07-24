@@ -1,9 +1,13 @@
 import React from "react";
-import Lenis from "lenis";
 import { Loader, Nav } from "./components";
 import {
+  AboutUs,
+  BlogDetails,
+  Blogs,
   Categories,
+  CategoriesPage,
   Collection,
+  ContactUs,
   Deal,
   Footer,
   Hero,
@@ -13,25 +17,44 @@ import {
   ShopInstagram,
   Testimonial,
 } from "./sections";
-import { Route, Routes } from "react-router-dom";
+import "locomotive-scroll/dist/locomotive-scroll.css";
+import { Route, Routes, useLocation } from "react-router-dom";
 
 function App() {
+  // const location = useLocation();
+  const scrollContainerRef = React.useRef(null);
+  const locomotiveScroll = React.useRef(null);
+
   React.useEffect(() => {
-    const lenis = new Lenis();
+    (async () => {
+      try {
+        const LocomotiveScroll = (await import("locomotive-scroll")).default;
 
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
+        locomotiveScroll.current = new LocomotiveScroll({
+          el: scrollContainerRef.current,
+          smooth: true,
+          lerp: 0.07,
+          multiplier: 1.2,
+          smartphone: { smooth: true },
+          tablet: { smooth: true },
+        });
+      } catch (error) {
+        console.error("Locomotive Scroll init failed:", error);
+      }
+    })();
 
     return () => {
-      lenis.destroy();
+      locomotiveScroll.current?.destroy();
     };
   }, []);
 
+  // Update scroll on route change
+  // React.useEffect(() => {
+  //   locomotiveScroll.current?.update();
+  // }, [location.pathname]);
+
   const [animate, setAnimate] = React.useState(false);
+  const [logoPosition, setLogoPosition] = React.useState(0);
 
   React.useEffect(() => {
     const handlePageLoad = () => {
@@ -51,31 +74,38 @@ function App() {
 
   return (
     <>
-      <Loader animate={animate} />
-      {/* <div
+      <div ref={scrollContainerRef} data-scroll-container>
+        <Loader animate={animate} logoPosition={logoPosition} />
+        {/* <div
         className={`pageContent mt-[3rem] ${animate ? "tPVisisble" : "tPMove"}`}
       ></div> */}
-      <Nav />
-      <div className="mt-[64px] bg-transparent" />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <Hero />
-              <Categories />
-              <Deal />
-              <Testimonial />
-              <News />
-              <ShopInstagram />
-              <ShopIcons />
-            </>
-          }
-        />
-        <Route path="/product/:id" element={<ProductDetails />} />
-        <Route path="/product" element={<Collection />} />
-      </Routes>
-      <Footer />
+        <Nav setLogoPosition={setLogoPosition} />
+        <div className="mt-[64px] bg-transparent" />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Hero />
+                <Categories />
+                <Deal />
+                <Testimonial />
+                <News />
+                <ShopInstagram />
+                <ShopIcons />
+              </>
+            }
+          />
+          <Route path="/product/:productId" element={<ProductDetails />} />
+          <Route path="/product" element={<Collection />} />
+          <Route path="/collection" element={<CategoriesPage />} />
+          <Route path="/blog" element={<Blogs />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/contact" element={<ContactUs />} />
+          <Route path="/blog/:blogId" element={<BlogDetails />} />
+        </Routes>
+        <Footer />
+      </div>
     </>
   );
 }

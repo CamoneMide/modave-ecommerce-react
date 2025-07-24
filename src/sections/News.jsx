@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { newsSects } from "../constants";
+import { Link } from "react-router-dom";
 
 const News = () => {
   return (
@@ -44,7 +45,7 @@ const News = () => {
             }}
             className="testiSwiper"
           >
-            {newsSects.map((newsSect) => (
+            {newsSects.slice(0, 4).map((newsSect) => (
               <SwiperSlide key={newsSect.id}>
                 <div className="flex flex-col w-full h-full gap-[12px] newsMain">
                   <div className="flex flex-col overflow-hidden rounded-[12px] mb-[4px]">
@@ -60,12 +61,12 @@ const News = () => {
                       {"   "}
                       {newsSect.month}
                     </h6>
-                    <a
-                      href=""
+                    <Link
+                      to={`/blog/${newsSect.id}`}
                       className="text-[var(--text-color)] navTrans hover:text-[var(--text-color-active)] text-[16px] md:text-[18px] lg:text-[20px] newsLink p-0"
                     >
                       {newsSect.title}
-                    </a>
+                    </Link>
                     <p className="text-[16px] text-[var(--text-color-inActive)]">
                       {newsSect.text}
                     </p>
