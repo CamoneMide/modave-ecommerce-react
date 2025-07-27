@@ -18,7 +18,7 @@ const ShopInstagram = () => {
     <>
       <section className="bg-[var(--text-color-white)]">
         <Container>
-          <div className="text-center pb-[10px]">
+          <div className="text-center pb-[10px] flex flex-col w-full items-center">
             <div className="mb-[8px]">
               <SectionHead text={"Shop Instagram"} />
             </div>

@@ -1,3 +1,4 @@
+import { FadeUp } from "../animations";
 import { PageNavBtns, TopHeroReUse } from "../components";
 import { categories } from "../constants";
 
@@ -13,7 +14,10 @@ const CategoriesPage = () => {
           <section data-scroll-section>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-[30px] gap-x-[15px] lg:gap-x-[30px]">
               {categories.map((category) => (
-                <div
+                <FadeUp
+                  distance={40}
+                  duration={0.4}
+                  delay={0.06 * category.id}
                   key={category.id}
                   className="relative flex flex-col group/categPg"
                 >
@@ -39,7 +43,7 @@ const CategoriesPage = () => {
                       <i className="bx bx-arrow-back rotate-[135deg] font-[500] text-[18px] md:text-[20px] -ml-[14px] text-[var(--text-color-active)] absolute right-[18px] top-[45%] translate-x-[100%] group-hover/catLnk:translate-x-0 transition-all duration-500 ease-in-out flex md:hidden w-[25%]"></i>
                     </div>
                   </div>
-                </div>
+                </FadeUp>
               ))}
             </div>
           </section>

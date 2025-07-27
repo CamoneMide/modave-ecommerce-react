@@ -11,6 +11,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { categSects, tabsSection } from "../constants";
+import { FadeUp } from "../animations";
 
 const Categories = () => {
   return (
@@ -49,29 +50,34 @@ const Categories = () => {
             className="categSwiper"
           >
             {categSects.map((categSect) => (
-              <SwiperSlide key={categSect.id} className="relative">
-                <div className="flex flex-col items-center gap-[6px]">
-                  <div className="flex overflow-hidden rounded-full">
-                    <img
-                      src={categSect.src}
-                      alt="cls-circle"
-                      className="object-cover w-full h-full hover:scale-[1.12] imgTrans"
-                    />
-                  </div>
-                  <a
-                    href="/collection"
-                    className="flex justify-center categLink text-[var(--text-color)] hover:text-[var(--text-color-active)]"
-                  >
-                    <h6 className="text-[16px] md:text-[20px] font-[500] mt-[10px]">
-                      {categSect.textH6}
-                    </h6>
-                    <i className="bx bx-arrow-back rotate-[135deg] font-[500] text-[18px] lg:text-[20px] -ml-[14px] opacity-0 navTrans text-[var(--text-color-active)]"></i>
-                  </a>
+              <SwiperSlide
+                key={categSect.id}
+                className="relative overflow-y-hidden"
+              >
+                <FadeUp distance={25} duration={0.4} delay={0.1 * categSect.id}>
+                  <div className="flex flex-col items-center gap-[6px]">
+                    <div className="flex overflow-hidden rounded-full">
+                      <img
+                        src={categSect.src}
+                        alt="cls-circle"
+                        className="object-cover w-full h-full hover:scale-[1.12] imgTrans"
+                      />
+                    </div>
+                    <a
+                      href="/collection"
+                      className="flex justify-center categLink text-[var(--text-color)] hover:text-[var(--text-color-active)]"
+                    >
+                      <h6 className="text-[16px] md:text-[20px] font-[500] mt-[10px]">
+                        {categSect.textH6}
+                      </h6>
+                      <i className="bx bx-arrow-back rotate-[135deg] font-[500] text-[18px] lg:text-[20px] -ml-[14px] opacity-0 navTrans text-[var(--text-color-active)]"></i>
+                    </a>
 
-                  <span className="text-[16px] text-[var(--text-color-inActive)]">
-                    {`${categSect.count} items`}
-                  </span>
-                </div>
+                    <span className="text-[16px] text-[var(--text-color-inActive)]">
+                      {`${categSect.count} items`}
+                    </span>
+                  </div>
+                </FadeUp>
               </SwiperSlide>
             ))}
           </Swiper>
@@ -110,6 +116,17 @@ const Categories = () => {
                 </TabsContent>
               ))}
             </Tabs>
+            <div className="flex items-center justify-center w-full mt-[40px] overflow-hidden">
+              <FadeUp distance={25} duration={0.4} delay={0.2}>
+                <div className="h-[30px]">
+                  <AnchorBtn
+                    href={"/collection"}
+                    color="black"
+                    text={"View All Products"}
+                  />
+                </div>
+              </FadeUp>
+            </div>
           </div>
         </Container>
       </section>

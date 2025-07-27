@@ -2,6 +2,7 @@ import { AnchorBtn, Button, Container, SaleCountdownTime } from "../components";
 import banner1 from "../assets/images/banner-cls1.jpg";
 import banner2 from "../assets/images/banner-cls2.jpg";
 import imgCount1 from "../assets/images/img-countdown1.png";
+import { FadeUp, SplitText } from "../animations";
 
 const Deal = () => {
   return (
@@ -16,20 +17,42 @@ const Deal = () => {
                 className="hover:scale-[1.1] imgTrans"
               />
             </div>
-            <div>
-              <a
-                href=""
-                className="text-[28px] md:text-[30px] lg:text-[40px] font-[500] text-[var(--text-color)] hover:text-[var(--text-color-active)] navTrans"
+            <div className="flex overflow-hidden">
+              <FadeUp
+                distance={40}
+                duration={0.4}
+                delay={0.1}
+                className="h-fit"
               >
-                Crossbody bag
-              </a>
+                <a
+                  href=""
+                  className="text-[28px] md:text-[30px] lg:text-[40px] font-[500] text-[var(--text-color)] hover:text-[var(--text-color-active)] navTrans"
+                >
+                  Crossbody bag
+                </a>
+              </FadeUp>
             </div>
-
-            <p className="text-[16px]  font-[400] text-[var(--text-color)] my-[10px] md:my-[0]">
-              From beach to party: Perfect styles for every occasion.
-            </p>
-            <div>
-              <AnchorBtn href={"/"} color="black" text="Shop Now" />
+            <div className="flex overflow-hidden">
+              <FadeUp
+                distance={"50%"}
+                duration={0.4}
+                delay={0.2}
+                className="h-fit"
+              >
+                <p className="text-[16px]  font-[400] text-[var(--text-color)] my-[10px] md:my-[0]">
+                  From beach to party: Perfect styles for every occasion.
+                </p>
+              </FadeUp>
+            </div>
+            <div className="flex overflow-hidden">
+              <FadeUp
+                distance={"50%"}
+                duration={0.4}
+                delay={0.3}
+                className="h-[30px]"
+              >
+                <AnchorBtn href={"/"} color="black" text="Shop Now" />
+              </FadeUp>
             </div>
           </div>
           <div className="relative">
@@ -41,42 +64,85 @@ const Deal = () => {
               />
             </div>
             <div className="absolute top-[40%] translate-x-[25%] flex flex-col items-center justify-center text-[var(--text-color-white)]">
-              <div>
-                <a
-                  href=""
-                  className="text-[28px] md:text-[30px] lg:text-[40px] font-[500] text-[var(--text-color-white)] hover:text-[var(--text-color-active)] navTrans"
+              <div className="flex overflow-hidden">
+                <FadeUp
+                  distance={40}
+                  duration={0.4}
+                  delay={0.1}
+                  className="h-fit"
                 >
-                  Capsule Collection
-                </a>
+                  <a
+                    href=""
+                    className="text-[28px] md:text-[30px] lg:text-[40px] font-[500] text-[var(--text-color-white)] hover:text-[var(--text-color-active)] navTrans"
+                  >
+                    Capsule Collection
+                  </a>
+                </FadeUp>
+              </div>
+              <div className="flex overflow-hidden">
+                <FadeUp
+                  distance={"50%"}
+                  duration={0.4}
+                  delay={0.2}
+                  className="h-fit"
+                >
+                  <p className="text-[16px] font-[400] mt-[10px] mb-[30px]">
+                    Reserved for special occasions
+                  </p>
+                </FadeUp>
               </div>
 
-              <p className="text-[16px] font-[400] mt-[10px] mb-[30px]">
-                Reserved for special occasions
-              </p>
-              <div>
-                <AnchorBtn href={"/"} color="white" text="Shop Now" />
+              <div className="flex overflow-hidden">
+                <FadeUp
+                  distance={"50%"}
+                  duration={0.4}
+                  delay={0.3}
+                  className="h-[30px]"
+                >
+                  <AnchorBtn href={"/"} color="white" text="Shop Now" />
+                </FadeUp>
               </div>
             </div>
           </div>
         </Container>
       </section>
+
       <section className="py-[60px] lg:py-[80px] bg-[var(--area-background-color)] relative">
         <Container className="flex flex-col justify-between lg:items-center lg:flex-row">
           <div className="flex flex-col justify-center gap-[24px]">
-            <div>
-              <a
-                href="/"
+            <div className="flex w-full overflow-hidden cursor-pointer">
+              <SplitText
+                text={"Limited-Time Deals On!"}
                 className="text-[28px] md:text-[30px] lg:text-[40px] font-[500] text-[var(--text-color)] hover:text-[var(--text-color-active)] navTrans"
-              >
-                Limited-Time Deals On!
-              </a>
+                delay={8}
+                duration={2}
+                ease="elastic.out(1,0.3)"
+                rootMargin="40px"
+              />
             </div>
 
-            <p className="text-[16px]  font-[400] text-[var(--text-color)]">
-              Up to 50% Off Selected Styles. Don't Miss Out.
-            </p>
-            <div className="flex">
-              <Button href={"/"} text={"Shop Now"} lite={false} />
+            <div className="flex overflow-hidden">
+              <FadeUp
+                distance={"50%"}
+                duration={0.4}
+                delay={0.1}
+                className="h-fit"
+              >
+                <p className="text-[16px]  font-[400] text-[var(--text-color)]">
+                  Up to 50% Off Selected Styles. Don't Miss Out.
+                </p>
+              </FadeUp>
+            </div>
+
+            <div className="flex overflow-hidden">
+              <FadeUp
+                distance={"50%"}
+                duration={0.4}
+                delay={0.2}
+                className="flex h-fit"
+              >
+                <Button href={"/"} text={"Shop Now"} lite={false} />
+              </FadeUp>
             </div>
           </div>
           <div className="p-6">

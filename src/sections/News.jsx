@@ -7,13 +7,14 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { newsSects } from "../constants";
 import { Link } from "react-router-dom";
+import { FadeUp } from "../animations";
 
 const News = () => {
   return (
     <>
       <section className="bg-[var(--text-color-white)] pb-[60px] lg:-pb[80px]">
         <Container>
-          <div className="text-center pb-[10px]">
+          <div className="text-center pb-[10px] flex flex-col w-full items-center">
             <div className="mb-[8px]">
               <SectionHead text={"News insight"} />
             </div>
@@ -47,30 +48,38 @@ const News = () => {
           >
             {newsSects.slice(0, 4).map((newsSect) => (
               <SwiperSlide key={newsSect.id}>
-                <div className="flex flex-col w-full h-full gap-[12px] newsMain">
-                  <div className="flex flex-col overflow-hidden rounded-[12px] mb-[4px]">
-                    <img
-                      src={newsSect.src}
-                      alt="blog-pic"
-                      className="object-cover w-full h-full newsImg"
-                    />
-                  </div>
-                  <div className="flex flex-col gap-[12px]">
-                    <h6 className="flex text-[12px] text-[var(--text-color-reduced)] font-[600] gap-[12px]">
-                      {newsSect.day}
-                      {"   "}
-                      {newsSect.month}
-                    </h6>
-                    <Link
-                      to={`/blog/${newsSect.id}`}
-                      className="text-[var(--text-color)] navTrans hover:text-[var(--text-color-active)] text-[16px] md:text-[18px] lg:text-[20px] newsLink p-0"
-                    >
-                      {newsSect.title}
-                    </Link>
-                    <p className="text-[16px] text-[var(--text-color-inActive)]">
-                      {newsSect.text}
-                    </p>
-                  </div>
+                <div className="flex flex-col overflow-hidden">
+                  <FadeUp
+                    distance={40}
+                    duration={0.4}
+                    delay={0.1 * newsSect.id}
+                  >
+                    <div className="flex flex-col w-full h-full gap-[12px] newsMain">
+                      <div className="flex flex-col overflow-hidden rounded-[12px] mb-[4px]">
+                        <img
+                          src={newsSect.src}
+                          alt="blog-pic"
+                          className="object-cover w-full h-full newsImg"
+                        />
+                      </div>
+                      <div className="flex flex-col gap-[12px]">
+                        <h6 className="flex text-[12px] text-[var(--text-color-reduced)] font-[600] gap-[12px]">
+                          {newsSect.day}
+                          {"   "}
+                          {newsSect.month}
+                        </h6>
+                        <Link
+                          to={`/blog/${newsSect.id}`}
+                          className="text-[var(--text-color)] navTrans hover:text-[var(--text-color-active)] text-[16px] md:text-[18px] lg:text-[20px] newsLink p-0"
+                        >
+                          {newsSect.title}
+                        </Link>
+                        <p className="text-[16px] text-[var(--text-color-inActive)]">
+                          {newsSect.text}
+                        </p>
+                      </div>
+                    </div>
+                  </FadeUp>
                 </div>
               </SwiperSlide>
             ))}

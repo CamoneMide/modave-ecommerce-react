@@ -19,6 +19,7 @@ import { BiLogoFacebook } from "react-icons/bi";
 import { MdOutlineFormatQuote } from "react-icons/md";
 import { AiFillStar } from "react-icons/ai";
 import { aboutTabs, abtPgRevs, patnrIcons, teams } from "../constants";
+import { FadeUp } from "../animations";
 
 const AboutUs = () => {
   return (
@@ -38,38 +39,42 @@ const AboutUs = () => {
                   className="size-full object-cover rounded-[8px]"
                 />
               </div>
-              <div className="flex flex-col gap-[20px]">
-                <h4 className="text-[28px] md:text-[30px] lg:text-[40px] font-[500] text-[var(--text-color)]">
-                  Modave – Offering rare and beautiful items worldwide
-                </h4>
-                <div className="w-full overflow-hidden">
-                  <Tabs defaultValue={aboutTabs[0].id} className="w-full">
-                    <TabsList className="categTabs flex justify-start items-center bg-transparent p-0 gap-[15px] lg:gap-[30px] mb-[16px]">
-                      {aboutTabs.map((tab) => (
-                        <TabsTrigger
-                          key={tab.id}
-                          value={tab.id}
-                          className="relative font-[600] text-[16px] m-0 py-1 ring-0 text-[var(--text-color-inActive)] hover:text-[rgba(24,24,24,0.8)] data-[state=active]:text-[var(--text-color)] shadow-none transition-all duration-300 ease-in-out focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=active]:shadow-none abtPgElmnt"
-                        >
-                          {tab.title}
-                        </TabsTrigger>
-                      ))}
-                    </TabsList>
+              <div className="flex flex-col overflow-hidden">
+                <FadeUp distance={40} duration={0.5} delay={0.1}>
+                  <div className="flex flex-col gap-[20px]">
+                    <h4 className="text-[28px] md:text-[30px] lg:text-[40px] font-[500] text-[var(--text-color)]">
+                      Modave – Offering rare and beautiful items worldwide
+                    </h4>
+                    <div className="w-full overflow-hidden">
+                      <Tabs defaultValue={aboutTabs[0].id} className="w-full">
+                        <TabsList className="categTabs flex justify-start items-center bg-transparent p-0 gap-[15px] lg:gap-[30px] mb-[16px]">
+                          {aboutTabs.map((tab) => (
+                            <TabsTrigger
+                              key={tab.id}
+                              value={tab.id}
+                              className="relative font-[600] text-[16px] m-0 py-1 ring-0 text-[var(--text-color-inActive)] hover:text-[rgba(24,24,24,0.8)] data-[state=active]:text-[var(--text-color)] shadow-none transition-all duration-300 ease-in-out focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=active]:shadow-none abtPgElmnt"
+                            >
+                              {tab.title}
+                            </TabsTrigger>
+                          ))}
+                        </TabsList>
 
-                    {aboutTabs.map((tab) => (
-                      <TabsContent
-                        key={tab.id}
-                        value={tab.id}
-                        className="abtPgCont"
-                      >
-                        <div>{tab.itemText}</div>
-                      </TabsContent>
-                    ))}
-                  </Tabs>
-                </div>
-                <div className="mt-[12px] flex">
-                  <Button href={"/"} text={"Read More"} lite={false} />
-                </div>
+                        {aboutTabs.map((tab) => (
+                          <TabsContent
+                            key={tab.id}
+                            value={tab.id}
+                            className="abtPgCont"
+                          >
+                            <div>{tab.itemText}</div>
+                          </TabsContent>
+                        ))}
+                      </Tabs>
+                    </div>
+                    <div className="mt-[12px] flex">
+                      <Button href={"/"} text={"Read More"} lite={false} />
+                    </div>
+                  </div>
+                </FadeUp>
               </div>
             </div>
             <div>
@@ -77,7 +82,9 @@ const AboutUs = () => {
             </div>
             <section className="bg-[var(--text-color-white)] pb-[60px] lg:pb-[80px]">
               <div className="flex flex-col items-center gap-[12px] mb-[40px]">
-                <SectionHead text={"Meet Our Teams"} />
+                <div>
+                  <SectionHead text={"Meet Our Teams"} />
+                </div>
                 <SectionSubHead
                   text={
                     "Discover exceptional experiences through testimonials from our satisfied customers."
@@ -177,7 +184,9 @@ const AboutUs = () => {
       <section className="py-[60px] lg:py-[80px] w-full bg-[var(--text-color-white)]">
         <Container>
           <div className="flex flex-col items-center gap-[12px] mb-[10px]">
-            <SectionHead text={"Customer Review"} />
+            <div>
+              <SectionHead text={"Customer Review"} />
+            </div>
           </div>
           <section className="bg-[var(--text-color-white)]">
             <Swiper

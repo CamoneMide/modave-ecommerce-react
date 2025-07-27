@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { FadeUp } from "../animations";
 
 const TopHeroReUse = ({ text }) => {
   return (
@@ -17,7 +18,16 @@ const TopHeroReUse = ({ text }) => {
           <div className="text-[14px] mt-1 text-[var(--text-color-reduced)]">
             <i className="bx bx-chevron-right"></i>
           </div>
-          <p className="text-[var(--text-color-reduced)]">{text}</p>
+          <div className="flex flex-col overflow-hidden">
+            <FadeUp
+              distance={"50%"}
+              duration={0.5}
+              delay={0.2}
+              className="h-fit"
+            >
+              <p className="text-[var(--text-color-reduced)]">{text}</p>
+            </FadeUp>
+          </div>
         </div>
       </div>
     </>

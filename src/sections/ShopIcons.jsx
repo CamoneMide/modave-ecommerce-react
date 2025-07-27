@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { shopIconsSects } from "../constants";
+import { FadeUp } from "../animations";
 
 const ShopIcons = () => {
   return (
@@ -37,18 +38,26 @@ const ShopIcons = () => {
           >
             {shopIconsSects.map((shopIconsSect) => (
               <SwiperSlide key={shopIconsSect.id}>
-                <div className="flex flex-col w-full h-full justify-center items-center gap-[20px]">
-                  <div className="flex text-[39px] text-[var(--text-color)]">
-                    <i className={shopIconsSect.iconClass}></i>
-                  </div>
-                  <div className="text-center flex flex-col gap-[8px]">
-                    <h6 className="text-[16px] md:text-[18px] lg:text-[20px] font-[500] text-[var(--text-color)]">
-                      {shopIconsSect.textH6}
-                    </h6>
-                    <p className="text-[16px] font-[400] text-[var(--text-color-inActive)]">
-                      {shopIconsSect.textP}
-                    </p>
-                  </div>
+                <div className="flex flex-col overflow-hidden">
+                  <FadeUp
+                    distance={40}
+                    duration={0.4}
+                    delay={0.05 * shopIconsSect.id}
+                  >
+                    <div className="flex flex-col w-full h-full justify-center items-center gap-[20px]">
+                      <div className="flex text-[39px] text-[var(--text-color)]">
+                        <i className={shopIconsSect.iconClass}></i>
+                      </div>
+                      <div className="text-center flex flex-col gap-[8px]">
+                        <h6 className="text-[16px] md:text-[18px] lg:text-[20px] font-[500] text-[var(--text-color)]">
+                          {shopIconsSect.textH6}
+                        </h6>
+                        <p className="text-[16px] font-[400] text-[var(--text-color-inActive)]">
+                          {shopIconsSect.textP}
+                        </p>
+                      </div>
+                    </div>
+                  </FadeUp>
                 </div>
               </SwiperSlide>
             ))}

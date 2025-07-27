@@ -141,7 +141,7 @@ const Nav = ({ setLogoPosition, setIsOpen }) => {
               </span>
             </Link>
             <a
-              href=""
+              href="/"
               className="flex flex-col text-[20px] text-[var(--text-color)] px-[10px] gap-[4px] items-center"
             >
               <i className="bx bx-search"></i>
@@ -150,7 +150,7 @@ const Nav = ({ setLogoPosition, setIsOpen }) => {
               </span>
             </a>
             <a
-              href=""
+              href="/"
               className="flex flex-col text-[20px] text-[var(--text-color)] px-[10px] gap-[4px] items-center"
             >
               <i className="bx bx-heart"></i>
@@ -159,7 +159,7 @@ const Nav = ({ setLogoPosition, setIsOpen }) => {
               </span>
             </a>
             <a
-              href=""
+              href="/"
               className="flex flex-col text-[20px] text-[var(--text-color)] pl-[10px] gap-[4px] items-center"
             >
               <i className="bx bx-shopping-bag"></i>

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { PageNavBtns, TopHeroReUse } from "../components";
 import { newsSects } from "../constants";
 import { Calendar, User } from "lucide-react";
+import { FadeUp } from "../animations";
 
 const Blogs = () => {
   return (
@@ -17,40 +18,47 @@ const Blogs = () => {
               {newsSects.map((newsSect) => (
                 <div
                   key={newsSect.id}
-                  className="flex flex-col w-full h-full gap-[12px] newsMain"
+                  className="flex flex-col overflow-hidden"
                 >
-                  <div className="flex flex-col w-full h-full md:max-h-[240px] lg:max-h-[410px] overflow-hidden rounded-[12px] mb-[4px]">
-                    <img
-                      src={newsSect.src}
-                      alt="blog-pic"
-                      className="object-cover w-full h-full newsImg"
-                    />
-                  </div>
-                  <div className="flex flex-col gap-[8px]">
-                    <div className="flex items-center gap-[33px] text-[14px] text-[var(--text-color)] mb-[4px]">
-                      <div className="flex items-center gap-2 ">
-                        <Calendar size={16} />
-                        <span>
-                          {newsSect.month}
-                          {"   "}
-                          {newsSect.day}, 2025
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <User size={16} />
-                        <span>by {newsSect.author}</span>
-                      </div>
+                  <FadeUp
+                    distance={40}
+                    duration={0.4}
+                    delay={0.06 * newsSect.id}
+                    className="flex flex-col w-full h-full gap-[12px] newsMain"
+                  >
+                    <div className="flex flex-col w-full h-full md:max-h-[240px] lg:max-h-[410px] overflow-hidden rounded-[12px] mb-[4px]">
+                      <img
+                        src={newsSect.src}
+                        alt="blog-pic"
+                        className="object-cover w-full h-full newsImg"
+                      />
                     </div>
-                    <Link
-                      to={`/blog/${newsSect.id}`}
-                      className="text-[var(--text-color)] navTrans hover:text-[var(--text-color-active)] text-[16px] md:text-[18px] lg:text-[20px] newsLink p-0"
-                    >
-                      {newsSect.title}
-                    </Link>
-                    <p className="text-[16px] text-[var(--text-color-inActive)]">
-                      {newsSect.text}
-                    </p>
-                  </div>
+                    <div className="flex flex-col gap-[8px]">
+                      <div className="flex items-center gap-[33px] text-[14px] text-[var(--text-color)] mb-[4px]">
+                        <div className="flex items-center gap-2 ">
+                          <Calendar size={16} />
+                          <span>
+                            {newsSect.month}
+                            {"   "}
+                            {newsSect.day}, 2025
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <User size={16} />
+                          <span>by {newsSect.author}</span>
+                        </div>
+                      </div>
+                      <Link
+                        to={`/blog/${newsSect.id}`}
+                        className="text-[var(--text-color)] navTrans hover:text-[var(--text-color-active)] text-[16px] md:text-[18px] lg:text-[20px] newsLink p-0"
+                      >
+                        {newsSect.title}
+                      </Link>
+                      <p className="text-[16px] text-[var(--text-color-inActive)]">
+                        {newsSect.text}
+                      </p>
+                    </div>
+                  </FadeUp>
                 </div>
               ))}
             </div>
