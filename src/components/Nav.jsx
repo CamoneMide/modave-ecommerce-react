@@ -140,33 +140,33 @@ const Nav = ({ setLogoPosition, setIsOpen }) => {
                 Categories
               </span>
             </Link>
-            <a
-              href="/"
+            <Link
+              to="/"
               className="flex flex-col text-[20px] text-[var(--text-color)] px-[10px] gap-[4px] items-center"
             >
               <i className="bx bx-search"></i>
               <span className="text-[12px] text-[var(--text-color-inActive)] font-[500]">
                 Search
               </span>
-            </a>
-            <a
-              href="/"
+            </Link>
+            <Link
+              to="/"
               className="flex flex-col text-[20px] text-[var(--text-color)] px-[10px] gap-[4px] items-center"
             >
               <i className="bx bx-heart"></i>
               <span className="text-[12px] text-[var(--text-color-inActive)] font-[500]">
                 Wishlist
               </span>
-            </a>
-            <a
-              href="/"
+            </Link>
+            <Link
+              to="/"
               className="flex flex-col text-[20px] text-[var(--text-color)] pl-[10px] gap-[4px] items-center"
             >
               <i className="bx bx-shopping-bag"></i>
               <span className="text-[12px] text-[var(--text-color-inActive)] font-[500]">
                 Cart
               </span>
-            </a>
+            </Link>
           </Container>
         </div>
         {/* Slide in and Out */}
@@ -194,9 +194,9 @@ const Nav = ({ setLogoPosition, setIsOpen }) => {
                     name="search"
                     id=""
                     placeholder="What are you looking for?"
-                    className="w-full h-[48px] flex text-[14px] leading-[22px] p-[12px] pl-[44px] font-[400] bg-[var(--text-color-white)] text-[var(--text-color-reduced)] rounded-[8px]"
+                    className="w-full h-[48px] flex text-[14px] leading-[22px] p-[12px] pl-[44px] font-[400] bg-[var(--text-color-white)] text-[var(--text-color-reduced)] border-[2px] border-[#E9E9E9] rounded-[8px]"
                   />
-                  <div className="absolute flex text-[var(--text-color)] text-[24px] top-[14px] left-[14px]">
+                  <div className="absolute flex text-[var(--text-color)] text-[24px] top-[14px] left-[14px] cursor-pointer">
                     <i className="bx bx-search"></i>
                   </div>
                 </div>

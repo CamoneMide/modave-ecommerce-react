@@ -30,14 +30,14 @@ const ProductCard = ({
             <img
               src={imgSrcFront}
               alt="Front"
-              className="group-hover:opacity-0 group-hover:scale-[0.9] navTrans1  opacity-100 scale-[1]"
+              className="group-hover:opacity-0 group-hover:scale-[0.9] navTrans1 opacity-100 scale-[1]"
             />
             <img
               src={imgSrcBack}
               alt="Back"
               className="opacity-0 scale-[1] navTrans1 group-hover:opacity-100 group-hover:scale-[1.1] absolute size-full"
             />
-            <div className="absolute z-[5] right-3 top-3 flex flex-col gap-[6px] group-hover:translate-x-0 group-hover:opacity-100 translate-x-0 lg:translate-x-[200%] opacity-100 lg:opacity-50 navTrans">
+            <div className="absolute z-[5] right-3 top-3 flex flex-col gap-[6px] group-hover:translate-x-0 group-hover:opacity-100 translate-x-[200%] opacity-50 navTrans">
               <TooltipProvider>
                 <Tooltip delayDuration={0}>
                   <TooltipTrigger>
@@ -93,12 +93,12 @@ const ProductCard = ({
                 </Tooltip>
               </TooltipProvider>
             </div>
-            <a
-              href=""
-              className="absolute z-[5] inset-x-3 bottom-3 group-hover:translate-y-0 group-hover:opacity-100 translate-y-0 lg:translate-y-[200%] opacity-100 lg:opacity-50 navTrans rounded-full uppercase justify-center items-center flex py-2 text-[var(--text-color)] bg-[var(--text-color-white)] hover:text-[var(--text-color-white)] hover:bg-[var(--text-color)]"
+            <Link
+              to=""
+              className="absolute z-[5] inset-x-3 bottom-3 group-hover:translate-y-0 group-hover:opacity-100 translate-y-[200%] opacity-50 navTrans rounded-full uppercase justify-center items-center flex py-2 text-[var(--text-color)] bg-[var(--text-color-white)] hover:text-[var(--text-color-white)] hover:bg-[var(--text-color)]"
             >
               <span>Quick Add</span>
-            </a>
+            </Link>
           </div>
           <div className="flex flex-col w-full pt-[10px] lg:pt-[16px] gap-[4px]">
             <Link

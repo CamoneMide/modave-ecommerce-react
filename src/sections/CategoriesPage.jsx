@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { FadeUp } from "../animations";
 import { PageNavBtns, TopHeroReUse } from "../components";
 import { categories } from "../constants";
@@ -29,7 +30,10 @@ const CategoriesPage = () => {
                     />
                   </div>
                   <div className="absolute bottom-0 p-[20px] flex flex-col justify-end w-full">
-                    <div className="w-full bg-[#FFF] py-[12px] px-[24px] flex justify-center md:justify-between items-center rounded-full group/catLnk cursor-pointer relative overflow-hidden">
+                    <Link
+                      to="/product"
+                      className="w-full bg-[#FFF] py-[12px] px-[24px] flex justify-center md:justify-between items-center rounded-full group/catLnk cursor-pointer relative overflow-hidden"
+                    >
                       <h6 className="text-[var(--text-color)] text-[16px] md:text-[18px] lg:text-[20px] font-[500] group-hover/catLnk:text-[var(--text-color-active)] transition-all duration-500 ease-in-out">
                         {category.textH6}
                       </h6>
@@ -41,7 +45,7 @@ const CategoriesPage = () => {
                       </span>
 
                       <i className="bx bx-arrow-back rotate-[135deg] font-[500] text-[18px] md:text-[20px] -ml-[14px] text-[var(--text-color-active)] absolute right-[18px] top-[45%] translate-x-[100%] group-hover/catLnk:translate-x-0 transition-all duration-500 ease-in-out flex md:hidden w-[25%]"></i>
-                    </div>
+                    </Link>
                   </div>
                 </FadeUp>
               ))}

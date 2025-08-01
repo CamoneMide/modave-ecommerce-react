@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Logo } from "../components";
 import { socsIcons } from "../constants";
 import { BsGithub } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const [accState1, setAccState1] = React.useState(false);
@@ -89,7 +90,7 @@ const Footer = () => {
                     <ul className="flex flex-col gap-[8px] text-[14px] font-[400]">
                       <li>
                         <a
-                          href=""
+                          href="/about"
                           className="h-[22px] cursor-pointer text-[var(--text-color-inActive)] flex hover:text-[var(--text-color-active)] navTrans"
                         >
                           About Us
@@ -97,43 +98,43 @@ const Footer = () => {
                       </li>
                       <li>
                         <a
-                          href=""
+                          href="/blog"
                           className="h-[22px] cursor-pointer text-[var(--text-color-inActive)] flex hover:text-[var(--text-color-active)] navTrans"
                         >
                           Our Stories
                         </a>
                       </li>
                       <li>
-                        <a
-                          href=""
+                        <Link
+                          to=""
                           className="h-[22px] cursor-pointer text-[var(--text-color-inActive)] flex hover:text-[var(--text-color-active)] navTrans"
                         >
                           Size Guide
-                        </a>
+                        </Link>
                       </li>
                       <li>
                         <a
-                          href=""
+                          href="/contact"
                           className="h-[22px] cursor-pointer text-[var(--text-color-inActive)] flex hover:text-[var(--text-color-active)] navTrans"
                         >
                           Contact us
                         </a>
                       </li>
                       <li>
-                        <a
-                          href=""
+                        <Link
+                          to=""
                           className="h-[22px] cursor-pointer text-[var(--text-color-inActive)] flex hover:text-[var(--text-color-active)] navTrans"
                         >
                           Career
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a
-                          href=""
+                        <Link
+                          to="/"
                           className="h-[22px] cursor-pointer text-[var(--text-color-inActive)] flex hover:text-[var(--text-color-active)] navTrans"
                         >
                           My Account
-                        </a>
+                        </Link>
                       </li>
                     </ul>
                   </div>
@@ -166,48 +167,48 @@ const Footer = () => {
                   <div className="overflow-hidden">
                     <ul className="flex flex-col gap-[8px] text-[14px] font-[400]">
                       <li>
-                        <a
-                          href=""
+                        <Link
+                          to=""
                           className="h-[22px] cursor-pointer text-[var(--text-color-inActive)] flex hover:text-[var(--text-color-active)] navTrans"
                         >
                           Shipping
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a
-                          href=""
+                        <Link
+                          to=""
                           className="h-[22px] cursor-pointer text-[var(--text-color-inActive)] flex hover:text-[var(--text-color-active)] navTrans"
                         >
                           Return & Refund
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a
-                          href=""
+                        <Link
+                          to=""
                           className="h-[22px] cursor-pointer text-[var(--text-color-inActive)] flex hover:text-[var(--text-color-active)] navTrans"
                         >
                           Privacy Policy
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a
-                          href=""
+                        <Link
+                          to=""
                           className="h-[22px] cursor-pointer text-[var(--text-color-inActive)] flex hover:text-[var(--text-color-active)] navTrans"
                         >
                           Terms & Conditions
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a
-                          href=""
+                        <Link
+                          to="/about"
                           className="h-[22px] cursor-pointer text-[var(--text-color-inActive)] flex hover:text-[var(--text-color-active)] navTrans"
                         >
                           Orders FAQs
-                        </a>
+                        </Link>
                       </li>
                       <li>
                         <a
-                          href=""
+                          href="/product"
                           className="h-[22px] cursor-pointer text-[var(--text-color-inActive)] flex hover:text-[var(--text-color-active)] navTrans"
                         >
                           My Wishlist

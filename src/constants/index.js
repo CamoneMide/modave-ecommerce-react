@@ -83,7 +83,7 @@ export const heroSects = [
     heroP: "BIKINIS & SWIMSUITS",
     heroText1: "Find Your",
     heroText2: "Signature Style",
-    heroBHref: "/",
+    heroBHref: "/collection",
   },
   {
     id: 2,
@@ -91,7 +91,7 @@ export const heroSects = [
     heroP: "BIKINIS & SWIMSUITS",
     heroText1: "Flash Sale Madness",
     heroText2: "",
-    heroBHref: "/",
+    heroBHref: "/collection",
   },
 ];
 

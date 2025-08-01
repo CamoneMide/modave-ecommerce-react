@@ -70,7 +70,7 @@ const Loader = ({ animate, logoPosition }) => {
         className={`fixed top-0 left-[${logoPosition}px] h-[64px] w-full px-[20px] text-[#181818] bg-none transition-all duration-1000 delay-500 ease-in-out ${
           animate
             ? "translate-y-0 translate-x-0"
-            : "translate-y-[40vh] translate-x-[12vw] lg:translate-x-[32vw]"
+            : "translate-y-[40vh] translate-x-[12vw] md:translate-x-[25vw] lg:translate-x-[32vw]"
         }`}
       >
         <svg

@@ -9,6 +9,7 @@ import ProductCard from "./ProductCard";
 import RecentRelatedProducts from "./RecentRelatedProducts";
 import SaleCountdownTime from "./SaleCountdownTime";
 import ScrollerEndlessIcons from "./ScrollerEndlessIcons";
+import ScrollToTopButton from "./ScrollToTopButton";
 import SectionHead from "./SectionHead";
 import SectionSubHead from "./SectionSubHead";
 import TopHeroReUse from "./TopHeroReUse";
@@ -25,6 +26,7 @@ export {
   RecentRelatedProducts,
   SaleCountdownTime,
   ScrollerEndlessIcons,
+  ScrollToTopButton,
   SectionHead,
   SectionSubHead,
   TopHeroReUse,

@@ -120,7 +120,7 @@ const Categories = () => {
               <FadeUp distance={25} duration={0.4} delay={0.2}>
                 <div className="h-[30px]">
                   <AnchorBtn
-                    href={"/collection"}
+                    href={"/product"}
                     color="black"
                     text={"View All Products"}
                   />

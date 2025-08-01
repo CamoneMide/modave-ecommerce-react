@@ -17,9 +17,9 @@ const Deal = () => {
                 className="hover:scale-[1.1] imgTrans"
               />
             </div>
-            <div className="flex overflow-hidden">
+            <div className="flex flex-col overflow-hidden">
               <FadeUp
-                distance={40}
+                distance={"50%"}
                 duration={0.4}
                 delay={0.1}
                 className="h-fit"
@@ -51,7 +51,7 @@ const Deal = () => {
                 delay={0.3}
                 className="h-[30px]"
               >
-                <AnchorBtn href={"/"} color="black" text="Shop Now" />
+                <AnchorBtn href={"/product"} color="black" text="Shop Now" />
               </FadeUp>
             </div>
           </div>
@@ -66,7 +66,7 @@ const Deal = () => {
             <div className="absolute top-[40%] translate-x-[25%] flex flex-col items-center justify-center text-[var(--text-color-white)]">
               <div className="flex overflow-hidden">
                 <FadeUp
-                  distance={40}
+                  distance={"50%"}
                   duration={0.4}
                   delay={0.1}
                   className="h-fit"
@@ -99,7 +99,7 @@ const Deal = () => {
                   delay={0.3}
                   className="h-[30px]"
                 >
-                  <AnchorBtn href={"/"} color="white" text="Shop Now" />
+                  <AnchorBtn href={"/product"} color="white" text="Shop Now" />
                 </FadeUp>
               </div>
             </div>

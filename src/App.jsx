@@ -1,5 +1,5 @@
 import React from "react";
-import { Loader, Nav } from "./components";
+import { Loader, Nav, ScrollToTopButton } from "./components";
 import {
   AboutUs,
   BlogDetails,
@@ -22,6 +22,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 
 function App() {
   // const location = useLocation();
+  const { pathname } = useLocation();
   const scrollContainerRef = React.useRef(null);
   const locomotiveScroll = React.useRef(null);
 
@@ -52,6 +53,10 @@ function App() {
   // React.useEffect(() => {
   //   locomotiveScroll.current?.update();
   // }, [location.pathname]);
+
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   const [animate, setAnimate] = React.useState(false);
   const [logoPosition, setLogoPosition] = React.useState(0);
@@ -104,6 +109,7 @@ function App() {
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/blog/:blogId" element={<BlogDetails />} />
         </Routes>
+        <ScrollToTopButton />
         <Footer />
       </div>
     </>
