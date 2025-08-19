@@ -26,6 +26,7 @@ const Nav = ({ setLogoPosition, cart, setCart }) => {
 
   const location = useLocation();
   const logoDivRef = React.useRef(null);
+  const recommendedProducts = React.useMemo(() => allProducts.slice(4, 11), []);
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -41,7 +42,7 @@ const Nav = ({ setLogoPosition, cart, setCart }) => {
   }, [prevScrollPos]);
 
   React.useEffect(() => {
-    if (navToggle) {
+    if (navToggle || isCartOpen) {
       document.body.style.overflow = "hidden";
       document.documentElement.style.overflow = "hidden";
       document.body.style.touchAction = "none";
@@ -56,7 +57,7 @@ const Nav = ({ setLogoPosition, cart, setCart }) => {
       document.documentElement.style.overflow = "";
       document.body.style.touchAction = "";
     };
-  }, [navToggle]);
+  }, [navToggle, isCartOpen]);
 
   React.useEffect(() => {
     const getLogoPosition = () => {
@@ -191,201 +192,203 @@ const Nav = ({ setLogoPosition, cart, setCart }) => {
 
         {/* Slide in and Out */}
         <div
-          className={`fixed flex z-[60] w-dvw h-dvh inset-0 navTrans ${
+          className={`fixed flex z-[60] w-dvw h-dvh inset-0 navTrans overflow-hidden ${
             navToggle
               ? "translate-x-[0] opacity-100"
               : "-translate-x-[100%] opacity-80"
           }`}
         >
-          <div className="w-full h-full bg-[rgba(0,0,0,0.1)]">
-            <div className="w-[84%] max-w-[367px] h-full bg-[var(--text-color-white)] relative">
-              <div className="absolute inset-0 bg-[var(--text-color-white)] h-[60px] px-[15px] py-[20px]">
-                <div
-                  className="text-[var(--text-color)] text-[26px] flex hover:rotate-90 navTrans hover:text-[var(--text-color-active)] w-fit cursor-pointer"
-                  onClick={() => setNavToggle(false)}
-                >
-                  <i className="fa-solid fa-xmark"></i>
+          <div className="w-[84%] max-w-[367px] h-full bg-[var(--text-color-white)] relative overflow-auto scrollbar-hide">
+            <div className="absolute inset-0 bg-[var(--text-color-white)] h-[60px] px-[15px] py-[20px]">
+              <div
+                className="text-[var(--text-color)] text-[26px] flex hover:rotate-90 navTrans hover:text-[var(--text-color-active)] w-fit cursor-pointer"
+                onClick={() => setNavToggle(false)}
+              >
+                <i className="fa-solid fa-xmark"></i>
+              </div>
+            </div>
+            <div className="w-full h-full px-[20px] pb-[16px] pt-[62px] flex flex-col">
+              <div className="relative flex w-full mb-[14px]">
+                <input
+                  type="search"
+                  name="search"
+                  placeholder="What are you looking for?"
+                  className="w-full h-[48px] flex text-[16px] leading-[22px] p-[12px] pl-[44px] font-[400] bg-[var(--text-color-white)] text-[var(--text-color-reduced)] border-[2px] border-[#E9E9E9] rounded-[8px]"
+                />
+                <div className="absolute flex text-[var(--text-color)] text-[24px] top-[14px] left-[14px] cursor-pointer">
+                  <i className="bx bx-search"></i>
                 </div>
               </div>
-              <div className="w-full h-full px-[20px] pb-[16px] pt-[62px] flex flex-col">
-                <div className="relative flex w-full mb-[14px]">
-                  <input
-                    type="search"
-                    name="search"
-                    id=""
-                    placeholder="What are you looking for?"
-                    className="w-full h-[48px] flex text-[14px] leading-[22px] p-[12px] pl-[44px] font-[400] bg-[var(--text-color-white)] text-[var(--text-color-reduced)] border-[2px] border-[#E9E9E9] rounded-[8px]"
-                  />
-                  <div className="absolute flex text-[var(--text-color)] text-[24px] top-[14px] left-[14px] cursor-pointer">
-                    <i className="bx bx-search"></i>
-                  </div>
-                </div>
-                <div className="flex flex-col items-center justify-between w-full h-full pb-[30px]">
-                  <div className="flex flex-col items-center w-full">
-                    {navLinks.map((navLink) => (
-                      <div
-                        key={navLink.label}
-                        className="flex items-center w-full h-[48px] border-b-[1px] border-b-[rgb(233 233 233)] last:border-b-0"
+              <div className="flex flex-1 flex-col items-center justify-between w-full h-full pb-[30px]">
+                <div className="flex flex-col items-center w-full">
+                  {navLinks.map((navLink) => (
+                    <div
+                      key={navLink.label}
+                      className="flex items-center w-full h-[48px] border-b-[1px] border-b-[rgb(233 233 233)] last:border-b-0"
+                    >
+                      <Link
+                        onClick={() => setNavToggle(false)}
+                        to={navLink.href}
+                        className={`hover:text-[var(--text-color-active)] navTrans text-[16px] font-[500] leading-[24px] ${
+                          location.pathname === navLink.href
+                            ? "text-[var(--text-color-active)]"
+                            : "text-[var(--text-color)]"
+                        }`}
                       >
-                        <Link
-                          onClick={() => setNavToggle(false)}
-                          to={navLink.href}
-                          className={`hover:text-[var(--text-color-active)] navTrans text-[16px] font-[500] leading-[24px] ${
-                            location.pathname === navLink.href
-                              ? // location.pathname.startsWith(navLink.href)
-                                "text-[var(--text-color-active)]"
-                              : "text-[var(--text-color)]"
-                          }`}
-                        >
-                          {navLink.label}
-                        </Link>
+                        {navLink.label}
+                      </Link>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex flex-col w-full">
+                  <div className="flex flex-row gap-[10px] mt-[10px] mb-[20px]">
+                    <a
+                      href=""
+                      className="flex flex-row items-center gap-[4px] h-[42px] px-[9px] rounded-[8px] text-[14px] font-[500] leading-[40px] text-[var(--text-color)] border-[1px] border-[#E9E9E9] bg-[#E9E9E9] cursor-pointer"
+                    >
+                      <div className="text-[16px]">
+                        <i className="bx bx-heart"></i>
                       </div>
-                    ))}
-                  </div>
-
-                  <div className="flex flex-col w-full">
-                    <div className="flex flex-row gap-[10px] mt-[10px] mb-[20px]">
-                      <a
-                        href=""
-                        className="flex flex-row items-center gap-[4px] h-[42px] px-[9px] rounded-[8px] text-[14px] font-[500] leading-[40px] text-[var(--text-color)] border-[1px] border-[#E9E9E9] bg-[#E9E9E9] cursor-pointer"
-                      >
-                        <div className="text-[16px]">
-                          <i className="bx bx-heart"></i>
-                        </div>
-                        <span>Wishlist</span>
-                      </a>
-                      <a
-                        href=""
-                        className="flex flex-row items-center gap-[4px] h-[42px] px-[9px] rounded-[8px] text-[14px] font-[500] leading-[40px] text-[var(--text-color)] border-[1px] border-[#E9E9E9] bg-[#E9E9E9] cursor-pointer"
-                      >
-                        <div className="text-[16px]">
-                          <i className="bx bx-user"></i>
-                        </div>
-                        <span>Login</span>
-                      </a>
-                    </div>
-                    <div className="flex flex-col gap-[8px]">
-                      <a
-                        href=""
-                        className="text-[16px] font-[500] leading-[24px] text-[var(--text-color)] mt-[4px]"
-                      >
-                        Need Help?
-                      </a>
-                      <p className="text-[16px] text-[var(--text-color-inActive)]">
-                        549 Oak St.Crystal Lake, IL 60014
-                      </p>
-                      <a
-                        href=""
-                        className="text-[12px] text-[var(--text-color)] hover:text-[var(--text-color-active)] font-[600] flex gap-[4px] navTrans mt-[4px]"
-                      >
-                        GET DIRECTION
-                        <i className="bx bx-arrow-back rotate-[135deg] font-[500] text-[18px] lg:text-[20px]"></i>
-                      </a>
-                      <ul className="flex flex-col gap-[8px]">
-                        <li className="flex flex-row gap-[12px] text-[var(--text-color-inActive)]">
-                          <i className="bx bx-envelope text-[20px]"></i>
-                          <p className="text-[16px]">
-                            ayomidemejidade@gmail.com
-                          </p>
-                        </li>
-                        <li className="flex flex-row gap-[12px] text-[var(--text-color-inActive)]">
-                          <i className="bx bx-phone text-[20px]"></i>
-                          <p className="text-[16px]">090-3003-2512</p>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="w-[110%] flex h-[1px] bg-[var(--text-color-inActive)] -ml-[16px]" />
-                <div className="flex flex-col md:flex-row items-center justify-center md:justify-between text-[14px] font-[500] text-[var(--text-color)] pt-[16px]">
-                  <p>
-                    Copyright &copy; {new Date().getFullYear()}, Modave~React.
-                  </p>
-                  <p className="flex flex-row items-center flex-nowrap">
-                    <strong>Developed by</strong>
-                    <a href="#" target="_blank" className="ml-1">
-                      <i>Camone_Mide</i>
+                      <span>Wishlist</span>
                     </a>
                     <a
-                      rel="noreferrer"
-                      href="https://www.linkedin.com/in/mide-web-developer"
-                      target="_blank"
-                      className="text-[18px] text-[#0077B5] px-[4px]"
+                      href=""
+                      className="flex flex-row items-center gap-[4px] h-[42px] px-[9px] rounded-[8px] text-[14px] font-[500] leading-[40px] text-[var(--text-color)] border-[1px] border-[#E9E9E9] bg-[#E9E9E9] cursor-pointer"
                     >
-                      <i className="bx bxl-linkedin"></i>
+                      <div className="text-[16px]">
+                        <i className="bx bx-user"></i>
+                      </div>
+                      <span>Login</span>
                     </a>
+                  </div>
+                  <div className="flex flex-col gap-[8px]">
                     <a
-                      rel="noreferrer"
-                      href="https://github.com/CamoneMide"
-                      target="_blank"
-                      className=" text-[#0077B5]"
+                      href=""
+                      className="text-[16px] font-[500] leading-[24px] text-[var(--text-color)] mt-[4px]"
                     >
-                      <BsGithub size={14} />
+                      Need Help?
                     </a>
-                  </p>
+                    <p className="text-[16px] text-[var(--text-color-inActive)]">
+                      549 Oak St.Crystal Lake, IL 60014
+                    </p>
+                    <a
+                      href=""
+                      className="text-[12px] text-[var(--text-color)] hover:text-[var(--text-color-active)] font-[600] flex gap-[4px] navTrans mt-[4px]"
+                    >
+                      GET DIRECTION
+                      <i className="bx bx-arrow-back rotate-[135deg] font-[500] text-[18px] lg:text-[20px]"></i>
+                    </a>
+                    <ul className="flex flex-col gap-[8px]">
+                      <li className="flex flex-row gap-[12px] text-[var(--text-color-inActive)]">
+                        <i className="bx bx-envelope text-[20px]"></i>
+                        <p className="text-[16px]">ayomidemejidade@gmail.com</p>
+                      </li>
+                      <li className="flex flex-row gap-[12px] text-[var(--text-color-inActive)]">
+                        <i className="bx bx-phone text-[20px]"></i>
+                        <p className="text-[16px]">090-3003-2512</p>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
+              </div>
+
+              <div className="flex flex-shrink-0 flex-col md:flex-row items-center justify-center md:justify-between text-[14px] font-[500] text-[var(--text-color)] pt-[10px] border-t-[1px] border-t-[var(--text-color-inActive)]">
+                <p>
+                  Copyright &copy; {new Date().getFullYear()}, Modave~React.
+                </p>
+                <p className="flex flex-row items-center flex-nowrap">
+                  <strong>Developed by</strong>
+                  <a href="#" target="_blank" className="ml-1">
+                    <i>Camone_Mide</i>
+                  </a>
+                  <a
+                    rel="noreferrer"
+                    href="https://www.linkedin.com/in/mide-web-developer"
+                    target="_blank"
+                    className="text-[18px] text-[#0077B5] px-[4px]"
+                  >
+                    <i className="bx bxl-linkedin"></i>
+                  </a>
+                  <a
+                    rel="noreferrer"
+                    href="https://github.com/CamoneMide"
+                    target="_blank"
+                    className=" text-[#0077B5]"
+                  >
+                    <BsGithub size={14} />
+                  </a>
+                </p>
               </div>
             </div>
           </div>
+          <div
+            className="flex flex-1 bg-[rgba(0,0,0,0.15)]"
+            onClick={() => setNavToggle(false)}
+            aria-hidden="true"
+          />
         </div>
 
         {/* Cart */}
         <section
-          className={`fixed inset-0 z-[60] bg-[rgba(24,24,24,0.2)] transition-all duration-500 ${
+          className={`fixed flex inset-0 h-dvh z-[70]  transition-all duration-500 ${
             isCartOpen
               ? "translate-x-[0] opacity-100"
               : "translate-x-[100%] opacity-50"
           }`}
+          aria-hidden={!isCartOpen}
+          aria-label="Shopping cart"
         >
-          <div className="absolute right-0 top-0 w-[92%] h-full max-w-[710px] bg-[var(--text-color-white)]">
-            <div className="flex flex-col md:flex-row size-full">
+          <div
+            className="flex flex-1 bg-[rgba(24,24,24,0.2)]"
+            onClick={() => setIsCartOpen(false)}
+          />
+          <div className="w-[90%] h-full max-w-[710px] max-h-dvh overflow-hidden bg-[var(--text-color-white)]">
+            <div className="flex flex-col h-full max-h-fit md:flex-row size-full">
               <div className="flex flex-col w-full md:w-[228px] px-[15px] pt-[15px] md:p-[24px] bg-[#FFF] shrink-0 gap-[12px] md:border-r-[1px] border-r-[#E9E9E9]">
                 <h6 className="text-[var(--text-color)] text-[16px] font-[500]">
                   You May Also Like
                 </h6>
-                <div className="flex overflow-hidden h-[218px] w-full md:w-[180px] md:h-full">
-                  <div className="overflow-x-scroll md:overflow-y-scroll flex flex-row gap-[15px] md:gap-[16px] md:flex-col w-full md:w-[180px] h-[218px] md:h-full scrollbar-hide">
-                    {allProducts.slice(4, 11).map((item) => (
-                      <div
-                        key={item.id}
-                        className="flex flex-col h-full w-[120px] md:w-full md:h-[325px] group/ymalk border-b-[1px] border-b-[#E9E9E9] md:pb-[16px]"
+                <div className="overflow-x-scroll md:overflow-y-scroll flex flex-row gap-[15px] md:gap-[16px] md:flex-col w-full md:w-[180px] h-[218px] md:h-full scrollbar-hide">
+                  {recommendedProducts.map((item) => (
+                    <div
+                      key={item.id}
+                      className="flex flex-col h-full w-[120px] md:w-full md:h-[325px] group/ymalk border-b-[1px] border-b-[#E9E9E9] md:pb-[16px]"
+                    >
+                      <div className="flex w-[120px] md:w-full h-[150px] md:h-[240px] mb-[12px] rounded-[8px] overflow-hidden">
+                        <img
+                          src={item.srcFront}
+                          alt="prod-img"
+                          className="object-cover size-full"
+                        />
+                      </div>
+                      <Link
+                        to={`/product/${item.id}`}
+                        className="flex w-full h-[26px] items-center text-[var(--text-color)] hover:text-[var(--text-color-active)] text-[14px] font-[500] transition-all duration-300 cursor-pointer whitespace-nowrap truncate"
                       >
-                        <div className="flex w-[120px] md:w-full h-[150px] md:h-[240px] mb-[12px] rounded-[8px] overflow-hidden">
-                          <img
-                            src={item.srcFront}
-                            alt="prod-img"
-                            className="object-cover size-full"
-                          />
-                        </div>
-                        <Link
-                          to={`/product/${item.id}`}
-                          className="flex w-full h-[26px] items-center text-[var(--text-color)] hover:text-[var(--text-color-active)] text-[14px] font-[500] transition-all duration-300 cursor-pointer whitespace-nowrap truncate"
-                        >
-                          {item.name}
-                        </Link>
-                        <div className="overflow-hidden flex flex-col w-full h-[26px]">
-                          <div className="h-[52px] w-full flex flex-col items-start group-hover/ymalk:-translate-y-[50%] transition-all duration-300">
-                            <div className="flex flex-col w-full h-[26px] text-[var(--text-color)] text-[16px] font-[600]">
-                              ${item.price}
-                            </div>
-                            <div
-                              className="flex flex-col w-full h-[26px] text-[var(--text-color)] hover:text-[var(--text-color-active)] text-[16px] font-[600] transition-all duration-300 cursor-pointer"
-                              onClick={() => {
-                                addProductToCart(item.id, setCart);
-                              }}
-                            >
-                              Add to cart
-                            </div>
+                        {item.name}
+                      </Link>
+                      <div className="overflow-hidden flex flex-col w-full h-[26px]">
+                        <div className="h-[52px] w-full flex flex-col items-start group-hover/ymalk:-translate-y-[50%] transition-all duration-300">
+                          <div className="flex flex-col w-full h-[26px] text-[var(--text-color)] text-[16px] font-[600]">
+                            ${item.price}
+                          </div>
+                          <div
+                            className="flex flex-col w-full h-[26px] text-[var(--text-color)] hover:text-[var(--text-color-active)] text-[16px] font-[600] transition-all duration-300 cursor-pointer"
+                            onClick={() => {
+                              addProductToCart(item.id, setCart);
+                            }}
+                          >
+                            Add to cart
                           </div>
                         </div>
                       </div>
-                    ))}
-                  </div>
+                    </div>
+                  ))}
                 </div>
               </div>
-              <div className="flex flex-1 flex-col w-full bg-[#FFF]">
-                <div className="flex flex-col w-full">
+              <div className="flex flex-col w-full justify-between bg-[#FFF] h-full">
+                <div className="flex flex-col flex-shrink-0 w-full h-full max-h-fit">
                   <div className="p-[12px] md:px-[24px] md:pt-[24px] flex flex-row w-full h-[60px] md:h-[70px] justify-between items-center">
                     <h6 className="text-[var(--text-color)] text-[20px] font-[500] flex-1">
                       Shopping Cart
@@ -416,52 +419,51 @@ const Nav = ({ setLogoPosition, cart, setCart }) => {
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-1 flex-col size-full bg-[#FFF] overflow-hidden">
-                  <div className="flex flex-col overflow-scroll scrollbar-hide px-[12px] md:px-[24px]">
-                    {cart?.map((item) => (
-                      <div
-                        key={item.id}
-                        className="py-[12px] md:py-[20px] border-b-[1px] border-b-[#E9E9E9] flex flex-row items-center gap-[12px] md:gap-[24px] h-[124px]"
-                      >
-                        <div className="flex size-[100px] rounded-[10px] overflow-hidden">
-                          <img
-                            src={item.srcBack}
-                            alt="prod-img"
-                            className="object-contain size-full rounded-[10px]"
-                          />
+                <div className="flex flex-1 flex-col overflow-auto scrollbar-hide px-[12px] md:px-[24px] h-[46%] max-h-[158px]">
+                  {cart?.map((item) => (
+                    <div
+                      key={item.id}
+                      className="py-[12px] md:py-[20px] border-b-[1px] border-b-[#E9E9E9] flex flex-row items-center gap-[12px] md:gap-[24px] h-[124px]"
+                    >
+                      <div className="flex size-[100px] rounded-[10px] overflow-hidden">
+                        <img
+                          src={item.srcBack}
+                          alt={item.name}
+                          className="object-contain size-full rounded-[10px]"
+                        />
+                      </div>
+                      <div className="flex flex-col gap-[10px] md:gap-[16px] flex-1">
+                        <div className="flex flex-row items-center justify-between gap-[12px]">
+                          <Link
+                            to={`/product/${item.id}`}
+                            className="text-[var(--text-color)] hover:text-[var(--text-color-active)] text-[16px] font-[500] transition-all duration-300 cursor-pointer whitespace-nowrap truncate"
+                          >
+                            {item.name}
+                          </Link>
+                          <button
+                            className="text-[var(--text-color-active)] text-[22px]"
+                            onClick={() =>
+                              removeProductFromCart(item.id, setCart)
+                            }
+                            aria-label={`Remove ${item.name} from cart`}
+                          >
+                            <PiTrashLight />
+                          </button>
                         </div>
-                        <div className="flex flex-col gap-[10px] md:gap-[16px] flex-1">
-                          <div className="flex flex-row items-center justify-between gap-[12px]">
-                            <Link
-                              to={`/product/${item.id}`}
-                              className="text-[var(--text-color)] hover:text-[var(--text-color-active)] text-[16px] font-[500] transition-all duration-300 cursor-pointer whitespace-nowrap truncate"
-                            >
-                              {item.name}
-                            </Link>
-                            <div
-                              className="text-[var(--text-color-active)] text-[22px] cursor-pointer"
-                              onClick={() => {
-                                removeProductFromCart(item.id, setCart);
-                              }}
-                            >
-                              <PiTrashLight />
-                            </div>
-                          </div>
-                          <div className="flex flex-row items-center justify-between gap-[12px]">
-                            <h6 className="text-[var(--text-color-reduced)] text-[16px] font-[400]">
-                              XL/Blue
-                            </h6>
-                            <p className="text-[var(--text-color)] text-[16px] font-[600] flex gap-[4px]">
-                              <span>{item.quantity}</span>X
-                              <span>${item.price}</span>
-                            </p>
-                          </div>
+                        <div className="flex flex-row items-center justify-between gap-[12px]">
+                          <h6 className="text-[var(--text-color-reduced)] text-[16px] font-[400]">
+                            XL/Blue
+                          </h6>
+                          <p className="text-[var(--text-color)] text-[16px] font-[600] flex gap-[4px]">
+                            <span>{item.quantity}</span>X
+                            <span>${item.price}</span>
+                          </p>
                         </div>
                       </div>
-                    ))}
-                  </div>
+                    </div>
+                  ))}
                 </div>
-                <div className="flex flex-col shadow-[5px_5px_18px_5px_rgba(64,72,87,0.15)]">
+                <div className="flex flex-col flex-shrink-0 shadow-[5px_5px_18px_5px_rgba(64,72,87,0.15)] h-[208px] md:h-[278px]">
                   <div className="px-[12px] md:px-[24px] grid grid-cols-4 items-center justify-evenly h-[40px] md:h-[58px] w-full border-b-[1px] border-b-[#E9E9E9]">
                     <div className="flex size-full items-center justify-center gap-[6px] md:gap-[12px] text-[18px] cursor-pointer">
                       <PiNotePencilThin />
@@ -496,14 +498,15 @@ const Nav = ({ setLogoPosition, cart, setCart }) => {
                       <h6>Subtotal</h6>
                       <p>$186.99</p>
                     </div>
+
                     <label
-                      htmlFor=""
+                      htmlFor="terms-agreement"
                       className="flex items-center gap-[8px] text-[var(--text-color)] text-[13px] md:text-[16px] font-[400]"
                     >
                       <input
                         type="checkbox"
-                        name=""
-                        id=""
+                        id="terms-agreement"
+                        name="terms-agreement"
                         className="size-[18px]"
                       />
                       I agree with{" "}
