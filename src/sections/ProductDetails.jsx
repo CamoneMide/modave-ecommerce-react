@@ -5,7 +5,7 @@ import { Container, RecentRelatedProducts } from "../components";
 import { BsEye, BsLightningChargeFill, BsStarFill } from "react-icons/bs";
 import { BiMinus, BiPlus } from "react-icons/bi";
 
-const ProductDetails = () => {
+const ProductDetails = ({ setCart }) => {
   const { productId } = useParams();
   const [product, setProduct] = React.useState(null);
   const [size, setSize] = React.useState("M");
@@ -209,7 +209,7 @@ const ProductDetails = () => {
           </div>
         </Container>
         <div className="py-[80px]">
-          <RecentRelatedProducts />
+          <RecentRelatedProducts setCart={setCart} />
         </div>
       </section>
     </>

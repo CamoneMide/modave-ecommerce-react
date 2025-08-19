@@ -1,6 +1,6 @@
 import {
-  Button,
   Container,
+  CustBtnModv,
   ScrollerEndlessIcons,
   SectionHead,
   SectionSubHead,
@@ -71,7 +71,13 @@ const AboutUs = () => {
                       </Tabs>
                     </div>
                     <div className="mt-[12px] flex">
-                      <Button href={"/"} text={"Read More"} lite={false} />
+                      <CustBtnModv
+                        href={"/"}
+                        text={"Read More"}
+                        borderFull
+                        border
+                        lite={false}
+                      />
                     </div>
                   </div>
                 </FadeUp>
@@ -210,7 +216,7 @@ const AboutUs = () => {
               pagination={{
                 clickable: true,
               }}
-              className="testiSwiper"
+              className="testiSwiper cursor-grab"
             >
               {abtPgRevs.map((rev) => (
                 <SwiperSlide key={rev.id}>

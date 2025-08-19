@@ -3,7 +3,7 @@ import Container from "./Container";
 import { recentRelateds } from "../constants";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
 
-const RecentRelatedProducts = () => {
+const RecentRelatedProducts = ({ setCart }) => {
   return (
     <>
       <Container>
@@ -31,6 +31,7 @@ const RecentRelatedProducts = () => {
                     imgSrcBack={item.srcBack}
                     productName={item.name}
                     productPrice={item.price}
+                    setCart={setCart}
                   />
                 ))}
               </div>

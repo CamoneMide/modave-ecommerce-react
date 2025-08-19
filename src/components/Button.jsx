@@ -5,7 +5,7 @@ const Button = ({ href, text, lite }) => {
     <>
       <Link
         to={href}
-        className={`relative overflow-hidden z-[1]  text-[14px] lg:text-[16px] py-[12px] px-[20px] lg:py-[15px] lg:px-[32px] aBtn-btn rounded-full font-[600] gap-[4px] ${
+        className={`relative overflow-hidden z-[1] text-[14px] lg:text-[16px] py-[12px] px-[20px] lg:py-[15px] lg:px-[32px] aBtn-btn rounded-full font-[600] gap-[4px] ${
           lite
             ? "text-[var(--text-color)] bg-[var(--text-color-white)]"
             : "bg-[var(--text-color)] text-[var(--text-color-white)]"

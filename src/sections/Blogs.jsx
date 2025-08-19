@@ -1,12 +1,23 @@
+import React from "react";
 import { Link } from "react-router-dom";
-import { PageNavBtns, TopHeroReUse } from "../components";
+import { PageNavBtn, TopHeroReUse } from "../components";
 import { newsSects } from "../constants";
 import { Calendar, User } from "lucide-react";
 import { FadeUp } from "../animations";
+import { MdOutlineArrowForwardIos } from "react-icons/md";
+import { getPageArray, scrollToSection } from "../utils/someFunctions";
 
 const Blogs = () => {
+  const [currentPage, setCurrentPage] = React.useState(1);
+
+  const totalItems = newsSects.length;
+  const itemsPerPage = 6;
+  const skip = (currentPage - 1) * itemsPerPage;
+  const pageNumbers = getPageArray(totalItems, itemsPerPage);
+
   return (
-    <section className="">
+    <section>
+      <div id="blogScrolTop" className="w-full" />
       <div>
         <TopHeroReUse text={"Blog"} />
       </div>
@@ -15,7 +26,7 @@ const Blogs = () => {
         <div className="mx-auto w-full max-w-[1290px]">
           <section data-scroll-section>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-[30px] gap-x-[15px] lg:gap-x-[30px]">
-              {newsSects.map((newsSect) => (
+              {newsSects.slice(skip, skip + itemsPerPage).map((newsSect) => (
                 <div
                   key={newsSect.id}
                   className="flex flex-col overflow-hidden"
@@ -64,8 +75,40 @@ const Blogs = () => {
             </div>
           </section>
 
-          <div className="mt-[40px]">
-            <PageNavBtns />
+          <div className="mt-[40px] flex flex-row items-center justify-center">
+            <div className="flex flex-row items-center gap-[8px]">
+              {pageNumbers.slice(0, 3).map((pageNo) => {
+                let mActive = pageNo === currentPage ? true : false;
+                return (
+                  <div
+                    key={pageNo}
+                    onClick={() => {
+                      scrollToSection("blogScrolTop");
+                      setCurrentPage(pageNo);
+                    }}
+                  >
+                    <PageNavBtn to={"/blog"} active={mActive}>
+                      {pageNo}
+                    </PageNavBtn>
+                  </div>
+                );
+              })}
+
+              <div
+                onClick={() => {
+                  scrollToSection("blogScrolTop");
+                  if (currentPage < pageNumbers.length) {
+                    setCurrentPage((prev) => prev + 1);
+                  } else if (currentPage >= pageNumbers.length) {
+                    setCurrentPage(1);
+                  }
+                }}
+              >
+                <PageNavBtn to={"/blog"}>
+                  <MdOutlineArrowForwardIos />
+                </PageNavBtn>
+              </div>
+            </div>
           </div>
         </div>
       </div>

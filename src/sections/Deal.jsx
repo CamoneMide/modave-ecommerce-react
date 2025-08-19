@@ -1,4 +1,9 @@
-import { AnchorBtn, Button, Container, SaleCountdownTime } from "../components";
+import {
+  AnchorBtn,
+  Container,
+  CustBtnModv,
+  SaleCountdownTime,
+} from "../components";
 import banner1 from "../assets/images/banner-cls1.jpg";
 import banner2 from "../assets/images/banner-cls2.jpg";
 import imgCount1 from "../assets/images/img-countdown1.png";
@@ -141,7 +146,14 @@ const Deal = () => {
                 delay={0.2}
                 className="flex h-fit"
               >
-                <Button href={"/"} text={"Shop Now"} lite={false} />
+                <CustBtnModv
+                  href={"/product"}
+                  text={"Shop Now"}
+                  lite={false}
+                  borderFull
+                  border
+                  icon
+                />
               </FadeUp>
             </div>
           </div>

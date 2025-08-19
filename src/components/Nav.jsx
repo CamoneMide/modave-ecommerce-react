@@ -1,14 +1,29 @@
 import React from "react";
 import Logo from "./Logo";
-import { navLinks } from "../constants";
+import { allProducts, navLinks } from "../constants";
 import Container from "./Container";
 import { Link, useLocation } from "react-router-dom";
 import { BsGithub } from "react-icons/bs";
 
-const Nav = ({ setLogoPosition, setIsOpen }) => {
+import {
+  addProductToCart,
+  removeProductFromCart,
+} from "../utils/someFunctions";
+import CustBtnModv from "./CustBtnModv";
+import {
+  PiGiftThin,
+  PiNotePencilThin,
+  PiTagThin,
+  PiTrashLight,
+  PiTruckThin,
+} from "react-icons/pi";
+
+const Nav = ({ setLogoPosition, cart, setCart }) => {
   const [prevScrollPos, setPrevScrollPos] = React.useState(0);
   const [visible, setVisible] = React.useState(true);
   const [navToggle, setNavToggle] = React.useState(false);
+  const [isCartOpen, setIsCartOpen] = React.useState(false);
+
   const location = useLocation();
   const logoDivRef = React.useRef(null);
 
@@ -109,11 +124,13 @@ const Nav = ({ setLogoPosition, setIsOpen }) => {
               </div>
               <div
                 className="relative flex cursor-pointer"
-                onClick={() => setIsOpen(true)}
+                onClick={() => {
+                  setIsCartOpen(true);
+                }}
               >
                 <i className="bx bx-shopping-bag"></i>
-                <span className="text-[10px] text-[var(--text-color-white)] bg-[var(--text-color-active)] absolute right-0 px-[3px] rounded-full">
-                  0
+                <span className="text-[10px] text-[var(--text-color-white)] bg-[var(--text-color-active)] absolute right-0 px-[4px] rounded-full">
+                  {cart.length}
                 </span>
               </div>
             </div>
@@ -158,17 +175,20 @@ const Nav = ({ setLogoPosition, setIsOpen }) => {
                 Wishlist
               </span>
             </Link>
-            <Link
-              to="/"
-              className="flex flex-col text-[20px] text-[var(--text-color)] pl-[10px] gap-[4px] items-center"
+            <div
+              onClick={() => {
+                setIsCartOpen(true);
+              }}
+              className="flex flex-col text-[20px] text-[var(--text-color)] pl-[10px] gap-[4px] items-center cursor-pointer"
             >
               <i className="bx bx-shopping-bag"></i>
               <span className="text-[12px] text-[var(--text-color-inActive)] font-[500]">
                 Cart
               </span>
-            </Link>
+            </div>
           </Container>
         </div>
+
         {/* Slide in and Out */}
         <div
           className={`fixed flex z-[60] w-dvw h-dvh inset-0 navTrans ${
@@ -309,6 +329,213 @@ const Nav = ({ setLogoPosition, setIsOpen }) => {
             </div>
           </div>
         </div>
+
+        {/* Cart */}
+        <section
+          className={`fixed inset-0 z-[60] bg-[rgba(24,24,24,0.2)] transition-all duration-500 ${
+            isCartOpen
+              ? "translate-x-[0] opacity-100"
+              : "translate-x-[100%] opacity-50"
+          }`}
+        >
+          <div className="absolute right-0 top-0 w-[92%] h-full max-w-[710px] bg-[var(--text-color-white)]">
+            <div className="flex flex-col md:flex-row size-full">
+              <div className="flex flex-col w-full md:w-[228px] px-[15px] pt-[15px] md:p-[24px] bg-[#FFF] shrink-0 gap-[12px] md:border-r-[1px] border-r-[#E9E9E9]">
+                <h6 className="text-[var(--text-color)] text-[16px] font-[500]">
+                  You May Also Like
+                </h6>
+                <div className="flex overflow-hidden h-[218px] w-full md:w-[180px] md:h-full">
+                  <div className="overflow-x-scroll md:overflow-y-scroll flex flex-row gap-[15px] md:gap-[16px] md:flex-col w-full md:w-[180px] h-[218px] md:h-full scrollbar-hide">
+                    {allProducts.slice(4, 11).map((item) => (
+                      <div
+                        key={item.id}
+                        className="flex flex-col h-full w-[120px] md:w-full md:h-[325px] group/ymalk border-b-[1px] border-b-[#E9E9E9] md:pb-[16px]"
+                      >
+                        <div className="flex w-[120px] md:w-full h-[150px] md:h-[240px] mb-[12px] rounded-[8px] overflow-hidden">
+                          <img
+                            src={item.srcFront}
+                            alt="prod-img"
+                            className="object-cover size-full"
+                          />
+                        </div>
+                        <Link
+                          to={`/product/${item.id}`}
+                          className="flex w-full h-[26px] items-center text-[var(--text-color)] hover:text-[var(--text-color-active)] text-[14px] font-[500] transition-all duration-300 cursor-pointer whitespace-nowrap truncate"
+                        >
+                          {item.name}
+                        </Link>
+                        <div className="overflow-hidden flex flex-col w-full h-[26px]">
+                          <div className="h-[52px] w-full flex flex-col items-start group-hover/ymalk:-translate-y-[50%] transition-all duration-300">
+                            <div className="flex flex-col w-full h-[26px] text-[var(--text-color)] text-[16px] font-[600]">
+                              ${item.price}
+                            </div>
+                            <div
+                              className="flex flex-col w-full h-[26px] text-[var(--text-color)] hover:text-[var(--text-color-active)] text-[16px] font-[600] transition-all duration-300 cursor-pointer"
+                              onClick={() => {
+                                addProductToCart(item.id, setCart);
+                              }}
+                            >
+                              Add to cart
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-1 flex-col w-full bg-[#FFF]">
+                <div className="flex flex-col w-full">
+                  <div className="p-[12px] md:px-[24px] md:pt-[24px] flex flex-row w-full h-[60px] md:h-[70px] justify-between items-center">
+                    <h6 className="text-[var(--text-color)] text-[20px] font-[500] flex-1">
+                      Shopping Cart
+                    </h6>
+                    <div
+                      className="text-[var(--text-color)] text-[26px] hover:rotate-90 navTrans hover:text-[var(--text-color-active)] cursor-pointer"
+                      onClick={() => setIsCartOpen(false)}
+                    >
+                      <i className="fa-solid fa-xmark"></i>
+                    </div>
+                  </div>
+                  <div className="px-[12px] md:px-[24px] w-full">
+                    <div className="flex flex-col justify-between h-[78px] md:h-[94px] p-[12px] md:p-[16px] w-full bg-[#F5F6EC] rounded-[12px]">
+                      <div className="flex h-[8px] w-full bg-[#FFF] mt-[12px]">
+                        <div
+                          className={`flex h-full ${
+                            isCartOpen ? "w-[80%]" : "w-0"
+                          } bg-gradient-to-r from-[#19450f] to-[#3dab25] relative transition-all duration-1000 delay-300`}
+                        >
+                          <div className="flex justify-center items-center absolute right-0 top-1/2 -translate-y-1/2 rounded-full size-[32px] bg-[#FFF] text-[rgba(24,24,24,0.8)] border-[2px] border-[#3DAB25] text-[20px]">
+                            <PiTruckThin />
+                          </div>
+                        </div>
+                      </div>
+                      <h6 className="text-[var(--text-color)] text-[14px] font-[400]">
+                        Congratulations! You've got free shipping!
+                      </h6>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-1 flex-col size-full bg-[#FFF] overflow-hidden">
+                  <div className="flex flex-col overflow-scroll scrollbar-hide px-[12px] md:px-[24px]">
+                    {cart?.map((item) => (
+                      <div
+                        key={item.id}
+                        className="py-[12px] md:py-[20px] border-b-[1px] border-b-[#E9E9E9] flex flex-row items-center gap-[12px] md:gap-[24px] h-[124px]"
+                      >
+                        <div className="flex size-[100px] rounded-[10px] overflow-hidden">
+                          <img
+                            src={item.srcBack}
+                            alt="prod-img"
+                            className="object-contain size-full rounded-[10px]"
+                          />
+                        </div>
+                        <div className="flex flex-col gap-[10px] md:gap-[16px] flex-1">
+                          <div className="flex flex-row items-center justify-between gap-[12px]">
+                            <Link
+                              to={`/product/${item.id}`}
+                              className="text-[var(--text-color)] hover:text-[var(--text-color-active)] text-[16px] font-[500] transition-all duration-300 cursor-pointer whitespace-nowrap truncate"
+                            >
+                              {item.name}
+                            </Link>
+                            <div
+                              className="text-[var(--text-color-active)] text-[22px] cursor-pointer"
+                              onClick={() => {
+                                removeProductFromCart(item.id, setCart);
+                              }}
+                            >
+                              <PiTrashLight />
+                            </div>
+                          </div>
+                          <div className="flex flex-row items-center justify-between gap-[12px]">
+                            <h6 className="text-[var(--text-color-reduced)] text-[16px] font-[400]">
+                              XL/Blue
+                            </h6>
+                            <p className="text-[var(--text-color)] text-[16px] font-[600] flex gap-[4px]">
+                              <span>{item.quantity}</span>X
+                              <span>${item.price}</span>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="flex flex-col shadow-[5px_5px_18px_5px_rgba(64,72,87,0.15)]">
+                  <div className="px-[12px] md:px-[24px] grid grid-cols-4 items-center justify-evenly h-[40px] md:h-[58px] w-full border-b-[1px] border-b-[#E9E9E9]">
+                    <div className="flex size-full items-center justify-center gap-[6px] md:gap-[12px] text-[18px] cursor-pointer">
+                      <PiNotePencilThin />
+                      <p className="text-[var(--text-color)] text-[10px] md:text-[14px] font-[400]">
+                        Note
+                      </p>
+                    </div>
+
+                    <div className="flex size-full items-center justify-center gap-[6px] md:gap-[12px] text-[18px] cursor-pointer">
+                      <PiTruckThin />
+                      <p className="text-[var(--text-color)] text-[10px] md:text-[14px] font-[400]">
+                        Shipping
+                      </p>
+                    </div>
+
+                    <div className="flex size-full items-center justify-center gap-[6px] md:gap-[12px] text-[18px] cursor-pointer">
+                      <PiGiftThin />
+                      <p className="text-[var(--text-color)] text-[10px] md:text-[14px] font-[400]">
+                        Gift
+                      </p>
+                    </div>
+
+                    <div className="flex size-full items-center justify-center gap-[6px] md:gap-[12px] text-[18px] cursor-pointer">
+                      <PiTagThin />
+                      <p className="text-[var(--text-color)] text-[10px] md:text-[14px] font-[400]">
+                        Coupon
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-[12px] h-[168px] md:h-[220px] p-[12px] md:p-[24px] md:pb-[20px]">
+                    <div className="flex justify-between items-center text-[var(--text-color)] text-[18px] md:text-[24px] font-[500]">
+                      <h6>Subtotal</h6>
+                      <p>$186.99</p>
+                    </div>
+                    <label
+                      htmlFor=""
+                      className="flex items-center gap-[8px] text-[var(--text-color)] text-[13px] md:text-[16px] font-[400]"
+                    >
+                      <input
+                        type="checkbox"
+                        name=""
+                        id=""
+                        className="size-[18px]"
+                      />
+                      I agree with{" "}
+                      <span className="underline">Terms & Conditions</span>
+                    </label>
+                    <div
+                      className="grid grid-cols-2 w-full gap-[10px] md:gap-[16px] md:mb-[4px]"
+                      onClick={() => setIsCartOpen(false)}
+                    >
+                      <CustBtnModv
+                        href={"/cart"}
+                        border
+                        text={"View Cart"}
+                        lite
+                        xtraPadng
+                      />
+                      <CustBtnModv
+                        href={"/cart"}
+                        border
+                        text={"Check Out"}
+                        xtraPadng
+                      />
+                    </div>
+                    <p className="flex justify-center items-center text-[var(--text-color)] text-[12px] font-[400] uppercase">
+                      Or continue shopping
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </header>
     </>
   );

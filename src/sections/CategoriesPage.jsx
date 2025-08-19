@@ -1,11 +1,22 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import { FadeUp } from "../animations";
-import { PageNavBtns, TopHeroReUse } from "../components";
+import { PageNavBtn, TopHeroReUse } from "../components";
 import { categories } from "../constants";
+import { getPageArray, scrollToSection } from "../utils/someFunctions";
+import { MdOutlineArrowForwardIos } from "react-icons/md";
 
 const CategoriesPage = () => {
+  const [currentPage, setCurrentPage] = React.useState(1);
+
+  const totalItems = categories.length;
+  const itemsPerPage = 8;
+  const skip = (currentPage - 1) * itemsPerPage;
+  const pageNumbers = getPageArray(totalItems, itemsPerPage);
+
   return (
-    <section className="">
+    <section>
+      <div id="categScrolTop" className="w-full" />
       <div>
         <TopHeroReUse text={"Categories"} />
       </div>
@@ -14,7 +25,7 @@ const CategoriesPage = () => {
         <div className="mx-auto w-full max-w-[1290px]">
           <section data-scroll-section>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-[30px] gap-x-[15px] lg:gap-x-[30px]">
-              {categories.map((category) => (
+              {categories.slice(skip, skip + itemsPerPage).map((category) => (
                 <FadeUp
                   distance={40}
                   duration={0.4}
@@ -52,8 +63,40 @@ const CategoriesPage = () => {
             </div>
           </section>
 
-          <div className="mt-[40px]">
-            <PageNavBtns />
+          <div className="mt-[40px] flex flex-row items-center justify-center">
+            <div className="flex flex-row items-center gap-[8px]">
+              {pageNumbers.slice(0, 3).map((pageNo) => {
+                let mActive = pageNo === currentPage ? true : false;
+                return (
+                  <div
+                    key={pageNo}
+                    onClick={() => {
+                      scrollToSection("categScrolTop");
+                      setCurrentPage(pageNo);
+                    }}
+                  >
+                    <PageNavBtn to={"/collection"} active={mActive}>
+                      {pageNo}
+                    </PageNavBtn>
+                  </div>
+                );
+              })}
+
+              <div
+                onClick={() => {
+                  scrollToSection("categScrolTop");
+                  if (currentPage < pageNumbers.length) {
+                    setCurrentPage((prev) => prev + 1);
+                  } else if (currentPage >= pageNumbers.length) {
+                    setCurrentPage(1);
+                  }
+                }}
+              >
+                <PageNavBtn to={"/collection"}>
+                  <MdOutlineArrowForwardIos />
+                </PageNavBtn>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -44,6 +44,22 @@ import dressFront7 from "../assets/images/dress-item7-front.jpg";
 import dressBack7 from "../assets/images/dress-item7-back.jpg";
 import dressFront8 from "../assets/images/dress-item8-front.jpg";
 import dressBack8 from "../assets/images/dress-item8-back.jpg";
+import dressFront9 from "../assets/images/dress-item9-front.jpg";
+import dressBack9 from "../assets/images/dress-item9-back.jpg";
+import dressFront10 from "../assets/images/dress-item10-front.jpg";
+import dressBack10 from "../assets/images/dress-item10-back.jpg";
+import dressFront11 from "../assets/images/dress-item11-front.jpg";
+import dressBack11 from "../assets/images/dress-item11-back.jpg";
+import dressFront12 from "../assets/images/dress-item12-front.jpg";
+import dressBack12 from "../assets/images/dress-item12-back.jpg";
+import dressFront13 from "../assets/images/dress-item13-front.jpg";
+import dressBack13 from "../assets/images/dress-item13-back.jpg";
+import dressFront14 from "../assets/images/dress-item14-front.jpg";
+import dressBack14 from "../assets/images/dress-item14-back.jpg";
+import dressFront15 from "../assets/images/dress-item15-front.jpg";
+import dressBack15 from "../assets/images/dress-item15-back.jpg";
+import dressFront16 from "../assets/images/dress-item16-front.jpg";
+import dressBack16 from "../assets/images/dress-item16-back.jpg";
 
 import categPageImg01 from "../assets/images/categPageImg01.jpg";
 import categPageImg02 from "../assets/images/categPageImg02.jpg";
@@ -882,7 +898,7 @@ export const tabsSection = [
     title: "New Arrivals",
     items: [
       {
-        id: 11.1,
+        id: 11.01,
         href: "/product/11.1",
         srcFront: dressFront1,
         srcBack: dressBack1,
@@ -952,7 +968,7 @@ export const tabsSection = [
     title: "Best Seller",
     items: [
       {
-        id: 21.1,
+        id: 21.01,
         href: "",
         srcFront: dressFront3,
         srcBack: dressBack3,
@@ -1024,7 +1040,7 @@ export const tabsSection = [
     title: "On Sale",
     items: [
       {
-        id: 31.1,
+        id: 31.01,
         href: "",
         srcFront: dressFront2,
         srcBack: dressBack2,
@@ -1099,7 +1115,7 @@ export const recentRelateds = [
     title: "Related Products",
     items: [
       {
-        id: 11.1,
+        id: 11.01,
         href: "/product/11.1",
         srcFront: dressFront1,
         srcBack: dressBack1,
@@ -1137,7 +1153,7 @@ export const recentRelateds = [
     title: "Recently Viewed",
     items: [
       {
-        id: 21.1,
+        id: 21.01,
         href: "",
         srcFront: dressFront3,
         srcBack: dressBack3,
@@ -1174,7 +1190,7 @@ export const recentRelateds = [
 
 export const allProducts = [
   {
-    id: 11.1,
+    id: 11.01,
     href: "/product/11.1",
     srcFront: dressFront1,
     srcBack: dressBack1,
@@ -1237,8 +1253,74 @@ export const allProducts = [
     name: "Double-button trench coat",
     price: 219.99,
   },
+
   {
-    id: 21.1,
+    id: 11.9,
+    href: "",
+    srcFront: dressFront9,
+    srcBack: dressBack9,
+    name: "V-neck cotton T-shirt",
+    price: 59.99,
+  },
+  {
+    id: 11.1,
+    href: "",
+    srcFront: dressFront10,
+    srcBack: dressBack10,
+    name: "Polarized sunglasses",
+    price: 79.99,
+  },
+  {
+    id: 11.11,
+    href: "",
+    srcFront: dressFront11,
+    srcBack: dressBack11,
+    name: "Ramie shirt with pockets",
+    price: 89.99,
+  },
+  {
+    id: 11.12,
+    href: "",
+    srcFront: dressFront12,
+    srcBack: dressBack12,
+    name: "Ribbed cotton-blend top",
+    price: 69.99,
+  },
+  {
+    id: 11.13,
+    href: "",
+    srcFront: dressFront13,
+    srcBack: dressBack13,
+    name: "Ribbed cotton-blend top",
+    price: 39.99,
+  },
+  {
+    id: 11.14,
+    href: "",
+    srcFront: dressFront14,
+    srcBack: dressBack14,
+    name: "Faux-leather trousers",
+    price: 79.99,
+  },
+  {
+    id: 11.15,
+    href: "",
+    srcFront: dressFront15,
+    srcBack: dressBack15,
+    name: "Belt wrap dress",
+    price: 129.99,
+  },
+  {
+    id: 11.16,
+    href: "",
+    srcFront: dressFront16,
+    srcBack: dressBack16,
+    name: "Double-button trench coat",
+    price: 219.99,
+  },
+
+  {
+    id: 21.01,
     href: "",
     srcFront: dressFront3,
     srcBack: dressBack3,
@@ -1304,7 +1386,7 @@ export const allProducts = [
     price: 219.99,
   },
   {
-    id: 31.1,
+    id: 31.01,
     href: "",
     srcFront: dressFront2,
     srcBack: dressBack2,

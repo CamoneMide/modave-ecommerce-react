@@ -1,9 +1,11 @@
 import AnchorBtn from "./AnchorBtn";
 import Button from "./Button";
 import Container from "./Container";
+import CustBtnModv from "./CustBtnModv";
 import Loader from "./Loader";
 import Logo from "./Logo";
 import Nav from "./Nav";
+import PageNavBtn from "./PageNavBtn";
 import PageNavBtns from "./PageNavBtns";
 import ProductCard from "./ProductCard";
 import RecentRelatedProducts from "./RecentRelatedProducts";
@@ -18,9 +20,11 @@ export {
   AnchorBtn,
   Button,
   Container,
+  CustBtnModv,
   Loader,
   Logo,
   Nav,
+  PageNavBtn,
   PageNavBtns,
   ProductCard,
   RecentRelatedProducts,

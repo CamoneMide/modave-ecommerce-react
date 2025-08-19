@@ -13,7 +13,7 @@ import "swiper/css/pagination";
 import { categSects, tabsSection } from "../constants";
 import { FadeUp } from "../animations";
 
-const Categories = () => {
+const Categories = ({ setCart }) => {
   return (
     <>
       <section className="bg-[var(--text-color-white)]">
@@ -110,6 +110,7 @@ const Categories = () => {
                         imgSrcBack={item.srcBack}
                         productName={item.name}
                         productPrice={item.price}
+                        setCart={setCart}
                       />
                     ))}
                   </div>

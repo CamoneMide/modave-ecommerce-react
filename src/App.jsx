@@ -1,5 +1,6 @@
 import React from "react";
 import { Loader, Nav, ScrollToTopButton } from "./components";
+import { ToastContainer } from "react-toastify";
 import {
   AboutUs,
   BlogDetails,
@@ -22,6 +23,16 @@ import { Route, Routes, useLocation } from "react-router-dom";
 
 function App() {
   // const location = useLocation();
+  const [cart, setCart] = React.useState([]);
+
+  React.useEffect(() => {
+    const savedCart = localStorage.getItem("cart");
+
+    if (savedCart) {
+      setCart(JSON.parse(savedCart));
+    }
+  }, []);
+
   const { pathname } = useLocation();
   const scrollContainerRef = React.useRef(null);
   const locomotiveScroll = React.useRef(null);
@@ -84,7 +95,7 @@ function App() {
         {/* <div
         className={`pageContent mt-[3rem] ${animate ? "tPVisisble" : "tPMove"}`}
       ></div> */}
-        <Nav setLogoPosition={setLogoPosition} />
+        <Nav setLogoPosition={setLogoPosition} cart={cart} setCart={setCart} />
         <div className="mt-[64px] bg-transparent" />
         <Routes>
           <Route
@@ -92,7 +103,7 @@ function App() {
             element={
               <>
                 <Hero />
-                <Categories />
+                <Categories setCart={setCart} />
                 <Deal />
                 <Testimonial />
                 <News />
@@ -101,8 +112,11 @@ function App() {
               </>
             }
           />
-          <Route path="/product/:productId" element={<ProductDetails />} />
-          <Route path="/product" element={<Collection />} />
+          <Route
+            path="/product/:productId"
+            element={<ProductDetails setCart={setCart} />}
+          />
+          <Route path="/product" element={<Collection setCart={setCart} />} />
           <Route path="/collection" element={<CategoriesPage />} />
           <Route path="/blog" element={<Blogs />} />
           <Route path="/about" element={<AboutUs />} />
@@ -111,6 +125,7 @@ function App() {
         </Routes>
         <ScrollToTopButton />
         <Footer />
+        <ToastContainer className={"text-[12px] !text-[#181818] !font-[500]"} />
       </div>
     </>
   );

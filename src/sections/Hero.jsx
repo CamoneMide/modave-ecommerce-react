@@ -1,5 +1,5 @@
 import { heroSects } from "../constants";
-import { Button, Container } from "../components";
+import { Container, CustBtnModv } from "../components";
 
 import { Pagination, Autoplay, EffectFade } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -40,11 +40,14 @@ const Hero = () => {
                     <br />
                     {heroSect.heroText2}
                   </div>
+
                   <div className="flex mt-[14px] lg:mt-[24px]">
-                    <Button
+                    <CustBtnModv
                       href={heroSect.heroBHref}
                       text={"Explore Collection"}
-                      lite={true}
+                      borderFull
+                      icon
+                      lite
                     />
                   </div>
                 </Container>

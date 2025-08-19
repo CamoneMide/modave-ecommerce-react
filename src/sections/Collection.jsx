@@ -1,9 +1,31 @@
+import React from "react";
 import { allProducts } from "../constants";
-import { PageNavBtns, ProductCard, TopHeroReUse } from "../components";
+import { PageNavBtn, ProductCard, TopHeroReUse } from "../components";
+import { MdOutlineArrowForwardIos } from "react-icons/md";
+import { getPageArray, scrollToSection } from "../utils/someFunctions";
 
-const Collection = () => {
+const Collection = ({ setCart }) => {
+  const [currentPage, setCurrentPage] = React.useState(1);
+  // const [pscrolLoad, setPscrolLoad] = React.useState(false);
+
+  const totalItems = allProducts.length;
+  const itemsPerPage = 12;
+  const skip = (currentPage - 1) * itemsPerPage;
+  const pageNumbers = getPageArray(totalItems, itemsPerPage);
+
+  // if (pscrolLoad) {
+  //   return (
+  //     <>
+  //       <div className="flex flex-col items-center justify-center size-full">
+  //         Loading...
+  //       </div>
+  //     </>
+  //   );
+  // }
+
   return (
-    <section className="">
+    <section>
+      <div id="colScrolTop" className="w-full" />
       <div>
         <TopHeroReUse text={"Women"} />
       </div>
@@ -118,7 +140,7 @@ const Collection = () => {
 
           <section data-scroll-section>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-[30px] gap-x-[15px] lg:gap-x-[24px]">
-              {allProducts.slice(0, 16).map((item) => {
+              {allProducts.slice(skip, skip + itemsPerPage).map((item) => {
                 return (
                   <ProductCard
                     key={item.id}
@@ -127,14 +149,47 @@ const Collection = () => {
                     imgSrcBack={item.srcBack}
                     productName={item.name}
                     productPrice={item.price}
+                    setCart={setCart}
                   />
                 );
               })}
             </div>
           </section>
 
-          <div className="mt-[40px]">
-            <PageNavBtns />
+          <div className="mt-[40px] flex flex-row items-center justify-center">
+            <div className="flex flex-row items-center gap-[8px]">
+              {pageNumbers.slice(0, 3).map((pageNo) => {
+                let mActive = pageNo === currentPage ? true : false;
+                return (
+                  <div
+                    key={pageNo}
+                    onClick={() => {
+                      scrollToSection("colScrolTop");
+                      setCurrentPage(pageNo);
+                    }}
+                  >
+                    <PageNavBtn to={"/product"} active={mActive}>
+                      {pageNo}
+                    </PageNavBtn>
+                  </div>
+                );
+              })}
+
+              <div
+                onClick={() => {
+                  scrollToSection("colScrolTop");
+                  if (currentPage < pageNumbers.length) {
+                    setCurrentPage((prev) => prev + 1);
+                  } else if (currentPage >= pageNumbers.length) {
+                    setCurrentPage(1);
+                  }
+                }}
+              >
+                <PageNavBtn to={"/product"}>
+                  <MdOutlineArrowForwardIos />
+                </PageNavBtn>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -6,6 +6,7 @@ import {
 } from "@radix-ui/react-tooltip";
 import { Link } from "react-router-dom";
 import { FadeUp } from "../animations";
+import { addProductToCart } from "../utils/someFunctions";
 
 const ProductCard = ({
   id,
@@ -13,7 +14,12 @@ const ProductCard = ({
   imgSrcBack,
   productName,
   productPrice,
+  setCart,
 }) => {
+  function addcProductToCart(productId) {
+    addProductToCart(productId, setCart);
+  }
+
   return (
     <>
       <div className="flex overflow-hidden">
@@ -23,10 +29,7 @@ const ProductCard = ({
           delay={0}
           className="flex flex-col w-full group"
         >
-          <div
-            // to={`/product/${id}`}
-            className="relative flex overflow-hidden rounded-[8px]"
-          >
+          <div className="relative flex overflow-hidden rounded-[8px]">
             <img
               src={imgSrcFront}
               alt="Front"
@@ -77,12 +80,12 @@ const ProductCard = ({
               <TooltipProvider>
                 <Tooltip delayDuration={0}>
                   <TooltipTrigger>
-                    <a
-                      href="#"
+                    <Link
+                      to={`/product/${id}`}
                       className="flex items-center justify-center w-[40px] h-[40px] text-[22px] bg-[var(--text-color-white)] rounded-full text-[var(--text-color)] navTrans box-border font-[400] hover:bg-[var(--text-color)] hover:text-[var(--text-color-white)] cursor-pointer"
                     >
                       <i className="fa-regular fa-eye"></i>
-                    </a>
+                    </Link>
                   </TooltipTrigger>
                   <TooltipContent
                     side="left"
@@ -93,12 +96,14 @@ const ProductCard = ({
                 </Tooltip>
               </TooltipProvider>
             </div>
-            <Link
-              to=""
-              className="absolute z-[5] inset-x-3 bottom-3 group-hover:translate-y-0 group-hover:opacity-100 translate-y-[200%] opacity-50 navTrans rounded-full uppercase justify-center items-center flex py-2 text-[var(--text-color)] bg-[var(--text-color-white)] hover:text-[var(--text-color-white)] hover:bg-[var(--text-color)]"
+            <div
+              className="absolute z-[5] inset-x-3 bottom-3 group-hover:translate-y-0 group-hover:opacity-100 translate-y-[200%] opacity-50 navTrans rounded-full uppercase justify-center items-center flex py-2 text-[var(--text-color)] bg-[var(--text-color-white)] hover:text-[var(--text-color-white)] hover:bg-[var(--text-color)] text-[12px] cursor-pointer font-[600]"
+              onClick={() => {
+                addcProductToCart(id);
+              }}
             >
               <span>Quick Add</span>
-            </Link>
+            </div>
           </div>
           <div className="flex flex-col w-full pt-[10px] lg:pt-[16px] gap-[4px]">
             <Link

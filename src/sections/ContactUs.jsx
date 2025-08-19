@@ -1,4 +1,4 @@
-import { Button, Container, TopHeroReUse } from "../components";
+import { Container, CustBtnModv, TopHeroReUse } from "../components";
 
 const ContactUs = () => {
   return (
@@ -47,7 +47,14 @@ const ContactUs = () => {
                   </div>
                 </div>
                 <div className="flex">
-                  <Button href={"/"} text={"Send Message"} lite={false} />
+                  <CustBtnModv
+                    href={"/"}
+                    text={"Send Message"}
+                    lite={false}
+                    borderFull
+                    border
+                    icon
+                  />
                 </div>
               </div>
               <div className="flex flex-col gap-[20px]">
